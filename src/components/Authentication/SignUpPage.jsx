@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signUp } from '../../actions/authActions';
 import { useForm } from '../../hooks/useForm'
 import { validateSignUpForm } from '../../validations/authFormValidation';
 
 const SignUpPage = () => {
+
+  const dispatch = useDispatch();
 
   const [formValues, handleInputChanges] = useForm({
     name: "Bryan",
@@ -29,7 +33,7 @@ const SignUpPage = () => {
     const validForm = validateSignUpForm(formValues)
 
     if(validForm === true){
-      console.log("El formulario es correcto")
+      dispatch(signUp(formValues))
       setMsgError({message: null, responsibleInput: null})
     }else{
       setMsgError({
@@ -167,8 +171,8 @@ const SignUpPage = () => {
         </label> */}
         <button type='submit' className='bg-auth-submit text-white w-4/5 py-1 mt-8 font-bold'> Sign Up </button>
 
-        <Link to='/auth/login' className='mt-4 cursor-pointer hover:underline'>
-              You can register here 
+        <Link to='/auth/login' className='mt-4 cursor-pointer hover:underline text-sm'>
+              Already have an account? 
         </Link>
 
       </form>

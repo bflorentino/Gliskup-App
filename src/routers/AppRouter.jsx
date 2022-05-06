@@ -1,23 +1,36 @@
-import React from 'react'
-import {BrowserRouter as Router,  Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {BrowserRouter as Router,  Navigate,  Route, Routes } from 'react-router-dom'
+import { login } from '../actions/authActions'
 import AuthRouter from './AuthRouter'
 import SocialRouter from './SocialRouter'
 
 const AppRouter = () => {
-  return (
+
+    const {logged} = useSelector(state => state.authReducer)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const activeUser = JSON.parse(window.localStorage.getItem("ActiveUser"))
+        if(activeUser){
+            dispatch(login(activeUser.user, activeUser.email, activeUser.token))
+        }
+    }, [logged, dispatch])
+
+    return (
     <Router>
         <div>
             <Routes>
                 <Route
                     exact
                     path="*"
-                    element={<SocialRouter/>}
+                    element={ logged ? <SocialRouter /> : <Navigate to='/auth/login' />}
                 >
                 </Route>
                 <Route
                     exact
                     path='/auth/*'
-                    element={<AuthRouter/>}
+                    element={ !logged ? <AuthRouter /> : <Navigate to='/feed' /> }
                 >
                 </Route>
             </Routes>

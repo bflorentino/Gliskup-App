@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { loginWithUserAndPassword } from '../../actions/authActions'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 
@@ -11,8 +13,11 @@ const LoginPage = () => {
 
   const {user, password} = formValues
 
+  const dispatch = useDispatch()
+
   const handleLogin = (e) => {
     e.preventDefault()
+    dispatch(loginWithUserAndPassword(user, password))
   }
 
   return (
@@ -45,8 +50,8 @@ const LoginPage = () => {
               Sign In
             </button>
 
-            <Link to='/auth/signup' className='mt-4 cursor-pointer hover:underline'>
-              Already have an account? 
+            <Link to='/auth/signup' className='mt-4 cursor-pointer hover:underline text-sm'>
+                Don't have any account? You can register here 
             </Link>
 
           </form>

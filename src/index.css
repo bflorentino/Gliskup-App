@@ -7,8 +7,9 @@
 }
 
 #root{
-    width: 100vw;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #573B79
 }
 
 input[type="text"], input[type="password"] {

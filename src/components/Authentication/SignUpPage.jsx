@@ -33,8 +33,8 @@ const SignUpPage = () => {
     const validForm = validateSignUpForm(formValues)
 
     if(validForm === true){
-      dispatch(signUp(formValues))
       setMsgError({message: null, responsibleInput: null})
+      dispatch(signUp(formValues))
     }else{
       setMsgError({
         message: validForm[0],
@@ -160,15 +160,7 @@ const SignUpPage = () => {
           onChange={handleInputChanges}
           className= 'w-4/5 mt-4 text-lg'
         />
-        {/* <label className='cursor-pointer'>
-          <input 
-            type="file"
-            name='profPicture'
-            accept='image/*'
-            className= 'w-4/5 mt-4 none hidden'
-          />
-          Upload Picture
-        </label> */}
+
         <button type='submit' className='bg-auth-submit text-white w-4/5 py-1 mt-8 font-bold'> Sign Up </button>
 
         <Link to='/auth/login' className='mt-4 cursor-pointer hover:underline text-sm'>

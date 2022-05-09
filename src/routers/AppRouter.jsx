@@ -13,7 +13,7 @@ const AppRouter = () => {
     useEffect(() => {
         const activeUser = JSON.parse(window.localStorage.getItem("ActiveUser"))
         if(activeUser){
-            dispatch(login(activeUser.user, activeUser.email, activeUser.token))
+            dispatch(login(activeUser))
         }
     }, [logged, dispatch])
 

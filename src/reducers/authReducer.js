@@ -4,21 +4,40 @@ import { types } from "../types/types"
 const initialState = {
     logged: false,
     user: null,
-    token: null
+    name: null,
+    lastName: null,
+    token: null,
+    profilePic: null
 }
 
 export const authReducer = createReducer(initialState, (builder) => {
 
     builder
-        .addCase(types.login, (state, action) => ({
+        .addCase(types.login, (state, action) => {
+          return { 
             user : action.payload.user,
             token: action.payload.token,
-            logged: true   
-        })
+            name: action.payload.name,
+            lastName: action.payload.lastName,
+            profilePic : action.payload.profilePicture,
+            logged: true,
+          }   
+        }
         )   
         .addCase(types.logout, (state, action) => {
             return {
-                ...initialState
+                logged: false,
+                user: null,
+                name: null,
+                lastName: null,
+                token: null,
+                profilePic : null
+            }
+        })
+        .addCase(types.picSetted, (state, action) => {
+            return{
+            ...state,
+            profilePic: action.payload
             }
         })
 })

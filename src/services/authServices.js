@@ -31,3 +31,36 @@ export const loginService = async(user) => {
     const data = await res.json()
     return data
 }
+
+export const setUploadedProfilePicService = async (picObject) => {
+
+    const URL = `${BaseURL}/auth/user/setUploadedPic`
+
+    const dataToSend = new FormData();
+    dataToSend.append("profilePicture", picObject.readedImage);
+    dataToSend.append("user", picObject.user);
+
+    const res = await fetch(URL, {
+        method: 'PUT', 
+        body : dataToSend
+    });
+
+    const data = await res.json();
+    return data
+}
+
+export const setAvatarProfilePicService = async (picObject) => {
+   
+    const URL = `${BaseURL}/auth/user/setAvatarPic`
+
+    const res = await fetch(URL, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body : JSON.stringify(picObject)
+    });
+
+    const data = await res.json();
+    return data
+}

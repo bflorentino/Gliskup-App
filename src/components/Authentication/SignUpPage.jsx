@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signUp } from '../../actions/authActions';
+import { setLoading } from '../../actions/InterfaceActions';
 import { useForm } from '../../hooks/useForm'
 import { validateSignUpForm } from '../../validations/authFormValidation';
 
 const SignUpPage = () => {
 
   const dispatch = useDispatch();
+  const { loading } = useSelector(state => state.interfaceReducer)
 
   const [formValues, handleInputChanges] = useForm({
     name: "Bryan",
@@ -34,6 +36,7 @@ const SignUpPage = () => {
 
     if(validForm === true){
       setMsgError({message: null, responsibleInput: null})
+      dispatch(setLoading())
       dispatch(signUp(formValues))
     }else{
       setMsgError({
@@ -44,7 +47,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <section className ='flex flex-row items-center justify-center  h-screen bg-auth-primary'>
+    <section className ='flex flex-row items-center justify-center  h-screen'>
       <form 
         onSubmit={handleSignUp}
         className='flex flex-col items-center bg-white h-[490px] w-[400px] rounded-xl'
@@ -161,7 +164,13 @@ const SignUpPage = () => {
           className= 'w-4/5 mt-4 text-lg'
         />
 
-        <button type='submit' className='bg-auth-submit text-white w-4/5 py-1 mt-8 font-bold'> Sign Up </button>
+        <button   
+          type='submit'
+          disabled = {loading} 
+          className='bg-auth-submit hover:bg-link text-white w-4/5 py-1 mt-8 font-bold'
+        > 
+            Sign Up 
+        </button>
 
         <Link to='/auth/login' className='mt-4 cursor-pointer hover:underline text-sm'>
               Already have an account? 

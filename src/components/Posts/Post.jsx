@@ -1,19 +1,22 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import Interaction from './Interaction';
+import PostImage from './PostImage';
+import PostText from './PostText';
+import Reactions from './Reactions';
+import User from './User';
 
 const Post = () => {
     
-    const {profilePic, user} = useSelector(state => state.authReducer);
-
   return (
-    <section className='bg-white rounded-lg w-3/4 mt-4 h-[450px]'>
-        <div className='flex flex-row items-center mt-2'>
-        <img src={profilePic} alt="" className='w-10 rounded-full ml-8' />
-        <span className='font-bold font-ubuntu'>{user} </span>
-        </div>
-        <p className='mt-4 ml-8 font-ubuntu text-[15px]'>Netflix ha estado cayendo constantemente</p>
-        <img src="../assets/caida netflix.jpg" alt="" className='h-[300px] ml-8' />
-    </section>
+    <article className='bg-white mobile:w-full mobile:my-1 lg:rounded-lg lg:w-3/5'>
+          <div className='flex justify-between'>
+            <User />
+            <span className='text-gray float-left text-sm mr-4 mt-2'>5 Nov</span>
+          </div>
+          <PostText text={"Netflix reportó una pérdida de 200,000 usuarios en su último trimestre, lo que ha encendido las alarmas en dicha empresa. Su valor en la bolsa se ha caído en un 30%."} />
+          <PostImage />
+          <Interaction />
+    </article>
   )
 }
 

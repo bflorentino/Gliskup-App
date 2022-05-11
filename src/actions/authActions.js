@@ -2,6 +2,7 @@ import Swal from "sweetalert2"
 import { loginService, signUpService } from "../services/authServices"
 import { types } from "../types/types"
 import { firstTimeLogged } from "./FirstTimeInAppActions"
+import { removeLoading } from "./InterfaceActions"
 
 export const signUp = (user) => {
     return async (dispatch) => {
@@ -14,8 +15,10 @@ export const signUp = (user) => {
             }else{
                 Swal.fire("Error", res.message, 'error');
             }
+            dispatch(removeLoading())
         }).catch((e) => {
             Swal.fire("Error", "An error has ocurred", 'error');
+            dispatch(removeLoading())
         })
     }
 }
@@ -51,8 +54,10 @@ export const loginWithUserAndPassword = (userName, password) => {
             }else{
                 Swal.fire("Error", data.message, 'error');
             }
+            dispatch(removeLoading())
         }).catch((e)=> {
             Swal.fire("Error", "An error has ocurred", 'error');
+            dispatch(removeLoading())
         } )
     }
 }

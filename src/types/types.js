@@ -4,5 +4,9 @@ export const types = {
     logout: 'Auth-logout',
     initConfig: 'FirstTime-initConfig',
     passedInitConfig : 'FirstTime-passedInit',
-    picSetted : 'Auth-picSetted'
+    picSetted : 'Auth-picSetted',
+    loading : 'Interface-loading',
+    removeLoading : 'Interface-Removeloading',
+    openPostEntry : 'PostEntry-openPostEntry',
+    closePostEntry : 'PostEntry-closePostEntry'
 }

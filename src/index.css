@@ -4,15 +4,24 @@
 
 @layer utilities{
 
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    
+    input[type="text"], input[type="password"] {
+        outline: none;
+        border-bottom: solid #E5E5E5  1px;
+    }
+    
+    .search {
+        border-bottom: none;
+    }
 }
+
 
 #root{
-    overflow-y: auto;
     overflow-x: hidden;
-    background-color: #573B79
+    overflow-y: hidden;
+    background-color: #6A518A
 }
 
-input[type="text"], input[type="password"] {
-    outline: none;
-    border-bottom: solid #E5E5E5  1px;
-}

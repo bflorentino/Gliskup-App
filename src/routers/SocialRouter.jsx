@@ -5,7 +5,7 @@ import FeedPage from '../components/Feed/FeedPage'
 const SocialRouter = () => {
   return (
     <>
-    <div className='flex'>
+    <div className='lg:flex'>
 
           <Routes>
               <Route

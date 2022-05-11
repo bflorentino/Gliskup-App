@@ -1,8 +1,9 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginWithUserAndPassword } from '../../actions/authActions'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
+import { setLoading } from '../../actions/InterfaceActions'
 
 const LoginPage = () => {
 
@@ -14,14 +15,16 @@ const LoginPage = () => {
   const {user, password} = formValues
 
   const dispatch = useDispatch()
+  const { loading } = useSelector(state => state.interfaceReducer)
 
   const handleLogin = (e) => {
     e.preventDefault()
+    dispatch(setLoading())    
     dispatch(loginWithUserAndPassword(user, password))
   }
 
   return (
-    <section className ='flex flex-row items-center justify-center  h-screen bg-auth-primary'>
+    <section className ='flex flex-row items-center justify-center  h-screen'>
           <form 
             onSubmit={handleLogin}
             className = 'flex flex-col items-center bg-white h-[250px] w-[370px] rounded-xl'
@@ -46,7 +49,10 @@ const LoginPage = () => {
               className= 'w-4/5 mt-4 text-lg'
             />
 
-            <button type='submit' className='bg-auth-submit text-white w-4/5 py-1 mt-8 font-bold'>
+            <button type='submit' 
+                    disabled={loading} 
+                    className='bg-auth-submit text-white w-4/5 py-1 mt-8 font-bold hover:bg-link'
+            >
               Sign In
             </button>
 

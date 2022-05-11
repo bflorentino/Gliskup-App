@@ -1,6 +1,7 @@
 import { setAvatarProfilePicService } from "../services/authServices"
 import { setUploadedProfilePicService } from "../services/authServices"
 import { types } from "../types/types"
+import { removeLoading } from "./InterfaceActions"
 
 export const firstTimeLogged = () => {
     return {
@@ -27,17 +28,20 @@ export const setProfilePicture = (picObject) => {
 
     return (dispatch) => {
         const activeUser = JSON.parse(window.localStorage.getItem("ActiveUser"))
+        let settingPic = null;
+
         if(picObject.readedImage === null){
-            setAvatarProfilePicService(picObject).then(data => {
-                activeUser.profilePicture = picObject.profilePic
-            })
-        }else{
-            setUploadedProfilePicService(picObject).then(data => {
-                activeUser.profilePicture = data.data
-            })
+            settingPic = setAvatarProfilePicService
+        }
+        else{       
+            settingPic = setUploadedProfilePicService
+        }
+        settingPic(picObject).then(data => {
+            activeUser.profilePicture = picObject.profilePic
             window.localStorage.setItem("ActiveUser", JSON.stringify({...activeUser}))
             dispatch(gottenPic(picObject.profilePic))
             dispatch(initConfigurationPassed())
-        }
+            dispatch(removeLoading())
+        })
     }
 }

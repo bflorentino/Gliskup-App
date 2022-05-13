@@ -7,7 +7,7 @@ import { removeLoading } from "./InterfaceActions"
 export const signUp = (user) => {
     return async (dispatch) => {
         signUpService(user).then(res => {
-            if(res.errorStatus === null){
+            if(res.status === 201){
                 const {data} = res
                 dispatch(login(data))
                 window.localStorage.setItem("ActiveUser", JSON.stringify({...data}))
@@ -48,7 +48,7 @@ export const loginWithUserAndPassword = (userName, password) => {
     return async  (dispatch) => {
         loginService({user: userName, password})
         .then(data => {
-            if(data.errorStatus === null){
+            if(data.status === 200){
                 dispatch(login({...data.data}))
                 window.localStorage.setItem("ActiveUser", JSON.stringify({...data.data}))
             }else{

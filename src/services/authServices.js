@@ -28,7 +28,7 @@ export const loginService = async(user) => {
     }
 
     const res = await fetch(URL, req);
-    const data = await res.json()
+    const data = await res.json();
     return data
 }
 
@@ -45,8 +45,7 @@ export const setUploadedProfilePicService = async (picObject) => {
         body : dataToSend
     });
 
-    const data = await res.json();
-    return data
+    return res
 }
 
 export const setAvatarProfilePicService = async (picObject) => {
@@ -60,7 +59,6 @@ export const setAvatarProfilePicService = async (picObject) => {
         },
         body : JSON.stringify(picObject)
     });
-
-    const data = await res.json();
-    return data
+    
+    return res
 }

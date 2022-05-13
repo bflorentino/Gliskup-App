@@ -8,5 +8,8 @@ export const types = {
     loading : 'Interface-loading',
     removeLoading : 'Interface-Removeloading',
     openPostEntry : 'PostEntry-openPostEntry',
-    closePostEntry : 'PostEntry-closePostEntry'
+    closePostEntry : 'PostEntry-closePostEntry',
+    feedPosts : 'Posts-feedPosts',
+    myPosts : 'Posts-myPosts',
+    anyUserPosts : 'Posts-anyUserPosts'
 }

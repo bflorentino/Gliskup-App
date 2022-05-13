@@ -42,6 +42,8 @@ export const setProfilePicture = (picObject) => {
             dispatch(gottenPic(picObject.profilePic))
             dispatch(initConfigurationPassed())
             dispatch(removeLoading())
+        }).catch((e) => {
+            dispatch(removeLoading())
         })
     }
 }

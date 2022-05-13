@@ -25,6 +25,7 @@ module.exports = {
     },
     fontFamily:{
       'ubuntu' : ['Ubuntu', 'sans-serif'],
+      'inter' : ['Inter', 'sans-serif'],
     },
     extend: {},
   },

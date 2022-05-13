@@ -37,6 +37,7 @@ const SignUpPage = () => {
     if(validForm === true){
       setMsgError({message: null, responsibleInput: null})
       dispatch(setLoading())
+      formValues.user = user.toLowerCase()
       dispatch(signUp(formValues))
     }else{
       setMsgError({

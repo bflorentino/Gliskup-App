@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setClosedPostEntry } from '../../../actions/postEntryActions'
 import { uploadPost } from '../../../actions/postActions'
 import { useForm } from '../../../hooks/useForm'
-import PostImage from '../PostImage'
+import PostImage from '../PostVisualization/PostImage'
 import User from '../User'
 import { setLoading } from '../../../actions/InterfaceActions'
 

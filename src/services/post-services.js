@@ -20,9 +20,9 @@ export const uploadPostService = async (post) => {
     return data
 }
 
-export const getPostsServices = async ()  => {
+export const getPostsServices = async (userRequest)  => {
 
-    const URL = `${baseURL}/post/view`;
+    const URL = `${baseURL}/post/view/${userRequest}`;
 
     const req = {
         method : 'GET'

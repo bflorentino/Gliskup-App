@@ -2,7 +2,9 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import FeedPage from '../components/Feed/FeedPage'
 
+
 const SocialRouter = () => {
+
   return (
     <>
     <div className='lg:flex'>
@@ -15,6 +17,7 @@ const SocialRouter = () => {
               >
               </Route>
           </Routes>
+
     </div>
     </>
   )

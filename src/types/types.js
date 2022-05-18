@@ -9,7 +9,12 @@ export const types = {
     removeLoading : 'Interface-Removeloading',
     openPostEntry : 'PostEntry-openPostEntry',
     closePostEntry : 'PostEntry-closePostEntry',
-    feedPosts : 'Posts-feedPosts',
+    getPosts : 'Posts-getPosts',
+    updatePost: 'Posts-update',
+    removePost: 'Posts-remove',
+    addPost: 'Posts-add',
     myPosts : 'Posts-myPosts',
-    anyUserPosts : 'Posts-anyUserPosts'
+    anyUserPosts : 'Posts-anyUserPosts',
+    postStatiticsWOpen : 'PostStatiticsWindow-open',
+    postStatiticsWclosed : 'PostStatiticsWindow-closed'
 }

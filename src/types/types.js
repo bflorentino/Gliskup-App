@@ -12,9 +12,11 @@ export const types = {
     getPosts : 'Posts-getPosts',
     updatePost: 'Posts-update',
     removePost: 'Posts-remove',
+    clearPosts: 'Posts-clear',
     addPost: 'Posts-add',
     myPosts : 'Posts-myPosts',
     anyUserPosts : 'Posts-anyUserPosts',
     postStatiticsWOpen : 'PostStatiticsWindow-open',
-    postStatiticsWclosed : 'PostStatiticsWindow-closed'
+    postStatiticsWclosed : 'PostStatiticsWindow-closed',
+    setReactionsTypeStats : 'PostStatiticsWindow-setReactionStats'
 }

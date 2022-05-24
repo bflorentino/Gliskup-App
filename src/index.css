@@ -20,6 +20,14 @@
     .opacity {
        background-color: rgba(0,0,0,0.3)
     }
+
+    .makeReaction:hover {
+        transform : translateY(-0.25rem)
+    }
+
+    .reactionStats:hover{
+        border-bottom: 3px solid #573B79;
+    }
 }
 
 #root{

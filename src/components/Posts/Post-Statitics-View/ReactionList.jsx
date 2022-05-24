@@ -1,15 +1,18 @@
 import React from 'react'
 import UserReactionGrid from './UserReactionGrid'
 
-const ReactionList = () => {
+const ReactionList = ({reactions}) => {
+  
   return (
     <>
-      <UserReactionGrid />
-      <UserReactionGrid />
-      <UserReactionGrid />
-      <UserReactionGrid />
-      <UserReactionGrid />
-      <UserReactionGrid />
+      {reactions.length > 0
+        ?reactions.map((reaction, i) => (
+          <UserReactionGrid key={i} reaction={reaction} />
+        ))
+        :<div className='w-full h-full flex items-center justify-center'>
+          <p className='text-gray  font-inter'>No reactions of this type</p>
+        </div>
+      }
     </>
   )
 }

@@ -1,12 +1,12 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setClosedStatsWindow } from '../../../actions/PostStatisticsActions'
+import { setClosedStatsWindow, setReactionTypeStats } from '../../../actions/PostStatisticsActions'
 import ReactionsIcons from '../PostVisualization/ReactionsIcons'
 
-const ReactionsMenu = () => {
+const ReactionsMenu = ({reactions}) => {
 
   const dispatch = useDispatch()
-  const reactionsStyles = 'w-9 h-9'
+  const reactionsStyles = 'w-6 h-6 reactionStats'
 
   const handleCloseMenu = (e) => {
 
@@ -15,8 +15,8 @@ const ReactionsMenu = () => {
     dispatch(setClosedStatsWindow())
   } 
 
-  const handleReactionClick = (reaction) => {
-    console.log("Se presiono un boton")
+  const handleReactionStats = (type, e) => {
+    dispatch(setReactionTypeStats(reactions, type))
   }
 
   return (
@@ -28,8 +28,9 @@ const ReactionsMenu = () => {
             <button className='text-xl px-3 py-1' onClick={handleCloseMenu}>X</button>
         </span>
       </div>
-        <div className='flex m-auto justify-between w-[90%] mb-1'>
-          <ReactionsIcons reactionsStyles={reactionsStyles} />
+        <div className='flex m-auto justify-between w-[90%]'>
+          <button onClick={()=> handleReactionStats(0)}>All</button>
+          <ReactionsIcons reactionsStyles={reactionsStyles} handleReaction={handleReactionStats} />
       </div>
     </div>
     </>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../actions/authActions';
+import { clearPosts } from '../../actions/postActions';
 
 const MainNavBar = () => {
 
@@ -16,6 +17,7 @@ const MainNavBar = () => {
 
   const handleLogout = () => {
     dispatch(logout())
+    dispatch(clearPosts())
   } 
 
   return (

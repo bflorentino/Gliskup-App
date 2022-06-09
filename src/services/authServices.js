@@ -39,6 +39,7 @@ export const setUploadedProfilePicService = async (picObject) => {
     const dataToSend = new FormData();
     dataToSend.append("profilePicture", picObject.readedImage);
     dataToSend.append("user", picObject.user);
+    dataToSend.append("presentation", picObject.presentation)
 
     const res = await fetch(URL, {
         method: 'PUT', 

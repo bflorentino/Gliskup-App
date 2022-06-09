@@ -6,7 +6,7 @@ import ReactionsIcons from '../PostVisualization/ReactionsIcons'
 const ReactionsMenu = ({reactions}) => {
 
   const dispatch = useDispatch()
-  const reactionsStyles = 'w-6 h-6 reactionStats'
+  const reactionsStyles = 'w-6us h-6 reactionStats'
 
   const handleCloseMenu = (e) => {
 

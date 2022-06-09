@@ -84,7 +84,7 @@ const Entry = () => {
                 onChange={imageHandler}
             />
             <div className='flex items-center'>
-              <img src="./assets/image_gallery.png" alt="" className='w-8' />
+              <img src="../../assets/image_gallery.png" alt="" className='w-8' />
               <p className='text-xs font-inter ml-2'>Upload Picture</p>
             </div>
           </label>

@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom';
 import { logout } from '../../actions/authActions';
 import { clearPosts } from '../../actions/postActions';
+import { removeProfileData } from '../../actions/usersActions';
+
 
 const MainNavBar = () => {
 
   const {user, name, lastName, profilePic} = useSelector(state => state.authReducer);
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
+  const history = useNavigate();
+  const location = useLocation();
 
   const handleMenuClick = () => {
     const menu = document.querySelector('#menu')
@@ -18,7 +23,23 @@ const MainNavBar = () => {
   const handleLogout = () => {
     dispatch(logout())
     dispatch(clearPosts())
-  } 
+  }
+  
+  const goToProfilePage = () => {
+    if(location.pathname !== `/gliskup/userProfile/${user}`){
+      dispatch(removeProfileData())
+      dispatch(clearPosts())
+      history(`/gliskup/userProfile/${user}`, {replace:true} );
+    }
+  }
+
+  const goToHomePage = () => {
+    if(location.pathname !== '/gliskup/feed'){
+      dispatch(clearPosts())
+      dispatch(removeProfileData())
+      history(`/gliskup/feed`, {replace:true});
+    }
+  }
 
   return (
     <>
@@ -57,18 +78,22 @@ const MainNavBar = () => {
             </div>
 
             <ul className=' text-white font-ubuntu font-bold text-lg mt-12 ' >
-                <li className='mt-4 cursor-pointer flex flex-row items-center rounded-lg p-2 hover:bg-[#8D71B4]'>
-                  <img src="../assets/home.png" alt="Home" className='w-10' /> Home
+                <li className=''>
+                  <button onClick={goToHomePage}  className='mt-4 cursor-pointer flex flex-row items-center rounded-lg p-2 hover:bg-[#8D71B4] w-full'>
+                      <img src="../../assets/home.png" alt="Home" className='w-10' /> Home
+                  </button>
                 </li>
                 <li className='mt-4 cursor-pointer flex flex-row items-center rounded-lg p-2 hover:bg-[#8D71B4]'>
-                <img src="../assets/notifications.png" alt="Notfications" className='w-10' />  Notifications
+                <img src="../../assets/notifications.png" alt="Notfications" className='w-10' />  Notifications
                 </li>
-                <li className='mt-4 cursor-pointer flex flex-row items-center rounded-lg p-2 hover:bg-[#8D71B4]'>
-                  <img src="../assets/Profile.png" alt="Profile" className='w-10' /> My Profile
+                <li >
+                  <button onClick={goToProfilePage} className='mt-4 cursor-pointer flex flex-row items-center rounded-lg p-2 hover:bg-[#8D71B4] w-full' >
+                    <img src="../../assets/Profile.png" alt="Profile" className='w-10' /> My Profile
+                  </button>
                 </li>
                 <li className='mt-4 cursor-pointer flex flex-row items-center rounded-lg p-2 hover:bg-[#8D71B4]'>
                   <button className='flex' onClick={handleLogout}>
-                    <img src="../assets/Logout.png" alt="Logout" className='w-10' />  Logout
+                    <img src="../../assets/Logout.png" alt="Logout" className='w-10' />  Logout
                   </button>
                 </li>
             </ul>

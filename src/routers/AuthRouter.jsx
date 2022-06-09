@@ -8,15 +8,13 @@ const AuthRouter = () => {
     <div>
         <Routes>
             <Route
-                exact
-                path='/login'
+                exact path='/login'
                 element={<LoginPage />}
             >
             </Route>
 
             <Route
-                exact
-                path='/signup'
+                exact path='/signup'
                 element={<SignUpPage />}
             >    
             </Route>

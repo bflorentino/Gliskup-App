@@ -10,6 +10,7 @@ export const types = {
     openPostEntry : 'PostEntry-openPostEntry',
     closePostEntry : 'PostEntry-closePostEntry',
     getPosts : 'Posts-getPosts',
+    getUserPosts : 'Posts-getUsersPosts',
     updatePost: 'Posts-update',
     removePost: 'Posts-remove',
     clearPosts: 'Posts-clear',
@@ -18,5 +19,7 @@ export const types = {
     anyUserPosts : 'Posts-anyUserPosts',
     postStatiticsWOpen : 'PostStatiticsWindow-open',
     postStatiticsWclosed : 'PostStatiticsWindow-closed',
-    setReactionsTypeStats : 'PostStatiticsWindow-setReactionStats'
+    setReactionsTypeStats : 'PostStatiticsWindow-setReactionStats',
+    setProfileData : 'Users-setProfileData',
+    removeProfileData : 'Users-removeProfileData'
 }

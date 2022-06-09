@@ -5,6 +5,7 @@ import { interfaceReducer } from "../reducers/interfaceReducer";
 import { postBuildingReducer } from "../reducers/postBuildingReducer";
 import { postReducer } from "../reducers/postsReducer";
 import { PostStatisticsWindowReducer } from "../reducers/postStatiticsWindowReducer";
+import { usersReducer } from "../reducers/usersReducer";
 
 const reducer = combineReducers({
     firstTime: firstTimeInAppReducer,
@@ -12,7 +13,8 @@ const reducer = combineReducers({
     interfaceReducer,
     postEntry: postBuildingReducer,
     posts: postReducer,
-    postStatsWindow: PostStatisticsWindowReducer
+    postStatsWindow: PostStatisticsWindowReducer,
+    usersReducer
 })
 
 export const store = configureStore({

@@ -18,9 +18,9 @@ const PostStatistics = ({reactions}) => {
          {
            reactions.length > 0 && 
              <>
-              <img src="./assets/like-reaction.png" className='w-5 h-5' alt="" />
-              <img src="./assets/sad-reaction.png" className='w-5 h-5' alt="" />
-              <img src="./assets/love-reaction.png" className='w-5 h-5' alt="" />
+              <img src="../../assets/like-reaction.png" className='w-5 h-5' alt="" />
+              <img src="../../assets/sad-reaction.png" className='w-5 h-5' alt="" />
+              <img src="../../assets/love-reaction.png" className='w-5 h-5' alt="" />
               <p className='text-[11px] text-[#979797] hover:underline'> {reactions.length} </p>
             </>
           }

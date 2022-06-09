@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPosts } from '../../actions/postActions'
+import {  getPosts } from '../../actions/postActions'
 import UserInitConfig from '../Authentication/UserInitConfig'
 import MainNavBar from '../Navigation/MainNavBar'
 import Post from '../Posts/PostVisualization/Post'

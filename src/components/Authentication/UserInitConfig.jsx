@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { initConfigurationPassed, setProfilePicture } from '../../actions/FirstTimeInAppActions'
 import { removeLoading, setLoading } from '../../actions/InterfaceActions'
+import { useForm } from '../../hooks/useForm'
 
 const UserInitConfig = () => {
 
@@ -10,6 +11,7 @@ const UserInitConfig = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.authReducer)
   const { loading } = useSelector(state => state.interfaceReducer)
+  const [formValues, handleInputChanges] = useForm({presentation: ""});
 
   const imageHandler = (e) =>{
     const reader = new FileReader();
@@ -35,7 +37,11 @@ const UserInitConfig = () => {
   const handleSavePic = (e) => {
     e.preventDefault();
     dispatch(setLoading())
-    dispatch(setProfilePicture({user, profilePic: image, readedImage }))    
+    
+    dispatch(setProfilePicture({user, 
+                                profilePic: image, 
+                                readedImage, 
+                                presentation : formValues.presentation}))    
   }
 
   const handleSkip = (e) => {
@@ -46,7 +52,7 @@ const UserInitConfig = () => {
   return (
     <>
           <div className='w-full flex flex-row justify-center items-center h-screen'>
-            <form className='bg-white w-2/5 rounded-xl h-[400px] shadow-2xl' encType='multipart/form-data'>
+            <form className='bg-white w-4/5 lg:w-2/5 rounded-xl h-[450px]  lg:h-[550px] shadow-2xl' encType='multipart/form-data'>
 
               <h1 className='text-center text-2xl font-bold'>Your profile picture</h1>
               
@@ -55,7 +61,7 @@ const UserInitConfig = () => {
                <img 
                   src= { image ? image:  '../assets/no-user-image.jpg'}  
                   alt='no pic' 
-                  className='h-1/2 w-2/5 rounded-full border ' />
+                  className=' h-2/5 lg:h-1/2  rounded-full border ' />
               
                <label className='cursor-pointer mt-4 bg-auth-submit hover:bg-link py-1 px-3 text-white'>
                     <input 
@@ -74,6 +80,17 @@ const UserInitConfig = () => {
                 >   
                   Ramdon Avatar 
                 </button>
+
+                <textarea
+                    type="text" 
+                    name='presentation' 
+                    autoComplete='off'
+                    placeholder='Your Presentation'
+                    className='border w-4/5 outline-none mt-4 resize-none'
+                    onChange={handleInputChanges}
+                    value={formValues.presentation}
+                />
+
                 <div className='flex ml-auto'>
                   <button type='submit' disabled={loading} className='mr-4 hover:underline text-link' onClick={handleSavePic}>Save</button>
                   <button className='mr-4 hover:underline text-link' onClick={handleSkip}>Skip this</button>

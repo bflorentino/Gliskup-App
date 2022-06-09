@@ -8,9 +8,11 @@ export const postReducer = createReducer(initialState, (builder => {
     builder
     .addCase(types.getPosts, (state, action) => { 
         return [...action.payload]
-    }) 
+    })
+    .addCase(types.getUserPosts, (state, action) => {
+        return [...action.payload]
+    })
     .addCase((types.addPost), (state, action) => {
-        console.log(current(state))
         return [action.payload,...current(state)]
     })
     .addCase(types.updatePost, (state, action) => {

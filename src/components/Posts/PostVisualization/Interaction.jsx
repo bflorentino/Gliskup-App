@@ -41,45 +41,45 @@ const Interaction = ({postId, reacted, ownReactionType}) => {
                   ?
                     ownReactionType === 1 ? <p className={`${'text-link font-bold flex items-center' }`}
                                                    onClick = {handleRemoveReaction}>
-                                                  <img src='./assets/like-reaction.png' 
+                                                  <img src='../../assets/like-reaction.png' 
                                                   alt='like'
                                                   className='w-6 h-6'/> Like</p>
 
                     :ownReactionType === 2 ? <p className={`${'text-[#EB2E2E] font-bold flex items-center' }`}
                                                 onClick = {handleRemoveReaction}>
-                                                <img src='./assets/love-reaction.png' 
+                                                <img src='../../assets/love-reaction.png' 
                                                   alt='love'
                                                   className='w-6 h-6'/> Love
                                               </p>  
 
                     : ownReactionType === 3 ? <p className={`${'text-[#CFCF33] font-bold flex items-center' }`} 
                                                 onClick = {handleRemoveReaction}>
-                                             <img src='./assets/funny-reaction.png' 
+                                             <img src='../../assets/funny-reaction.png' 
                                                   alt='funny'
                                                   className='w-6 h-6'/> Funny</p> 
 
                     : ownReactionType === 4 ? <p className={`${'text-link font-bold flex items-center'  }`} 
                                                  onClick = {handleRemoveReaction}>
-                                                <img src='./assets/sad-reaction.png' 
+                                                <img src='../../assets/sad-reaction.png' 
                                                 alt='sad'
                                                 className='w-6 h-6'/> Sad</p> 
                     
                     : ownReactionType === 5 ? <p className={`${'text-[#0EC360] font-bold flex items-center' }`}
                                                  onClick = {handleRemoveReaction}>
-                                                <img src='./assets/surprise-reaction.png' 
+                                                <img src='../../assets/surprise-reaction.png' 
                                                 alt='surprise'
                                                 className='w-6 h-6'/>Surprised</p>      
                     
                     : ownReactionType === 6 ? <p className={`${'text-[#EB2E2E] font-bold flex items-center' }`}
                                                  onClick = {handleRemoveReaction}>
-                                                <img src='./assets/angry-reaction.png' 
+                                                <img src='../../assets/angry-reaction.png' 
                                                 alt='angry'
                                                 className='w-6 h-6'/>Angry</p>      
                     
                     : ownReactionType === 7 &&   <p className={`${'text-[#641C9A] font-bold flex items-center' }`}
                                                     onClick = {handleRemoveReaction}
                                                   >
-                                                  <img src='./assets/curious-reaction.png'  
+                                                  <img src='../../assets/curious-reaction.png'  
                                                   alt='curious'
                                                   className='w-6 h-6'/>Curious</p> 
         
@@ -88,7 +88,7 @@ const Interaction = ({postId, reacted, ownReactionType}) => {
             </button>)
         }
         <button className='w-1/2 flex items-center py-2 justify-center hover:bg-gray-text'>
-            <img src="../assets/share.png" alt="" className='w-6 mr-1' />
+            <img src="../../assets/share.png" alt="" className='w-6 mr-1' />
             Share
         </button>
     </div>

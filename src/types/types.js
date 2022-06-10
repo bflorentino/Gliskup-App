@@ -1,4 +1,3 @@
-
 export const types = {
     login: 'Auth-login',
     logout: 'Auth-logout',
@@ -21,5 +20,7 @@ export const types = {
     postStatiticsWclosed : 'PostStatiticsWindow-closed',
     setReactionsTypeStats : 'PostStatiticsWindow-setReactionStats',
     setProfileData : 'Users-setProfileData',
-    removeProfileData : 'Users-removeProfileData'
+    removeProfileData : 'Users-removeProfileData',
+    setUsersToSearch : 'search-setUsersToSearch',
+    removeUsersToSearch : 'search-removeUsersToSearch'
 }

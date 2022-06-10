@@ -30,7 +30,7 @@ const FeedPage = () => {
         :(
           <> 
             <MainNavBar />
-            <main className=' lg:ml-10 flex flex-col items-center w-full h-screen overflow-auto'>
+            <main className=' lg:ml-10 flex flex-col items-center w-full h-screen overflow-auto '>
               <Search />
               {
                 !postBuilderOpened ? <PostCreate />   :  <Entry />

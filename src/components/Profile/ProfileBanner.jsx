@@ -6,36 +6,37 @@ const ProfileBanner = ({userInfo, postsNumber}) => {
   const userOnline = useSelector(state => state.authReducer);
 
   return (
-    <div className='flex w-3/5 border-b border-border-line py-4'>
+    <div className='flex mobile:w-full lg:rounded-lg sd:w-8/12  py-4 bg-white rounded items-center justify-between'>
     {
       userInfo && (  
        <>
+       <div className='flex'>
         <img src={`${userInfo?.profilePic && userInfo.profilePic}`} 
             alt=""
-            className='w-32 h-32 rounded-full' 
+            className='w-20 h-20 lg:w-32 lg:h-32 rounded-full' 
         />
-        
-        <div className='flex flex-col mt-4 ml-4'>
-          
-          <p className='text-xl text-gray-text'>{userInfo?.name} {userInfo?.lastName}</p>
-          <p className='text-gray-text'>@{userInfo?.user}</p>
+          <div className='flex flex-col mt-4 ml-4 font-ubuntu'>
+            
+            <p className='text-xl font-bold'>{userInfo?.name} {userInfo?.lastName}</p>
+            <p className='text-gray'>@{userInfo?.user}</p>
 
-          <div className='flex text-white mt-2'>
-            <p className='pr-4'><strong>100</strong> followers</p>
-            <p className='pr-4'><strong>{ postsNumber ? postsNumber.length : 0}</strong> posts</p>
-            <p> <strong> 100 </strong> followed </p>
+            <div className='flex  mt-2'>
+              <p className=' text-sm lg:text-base pr-4'><strong>100</strong> followers</p>
+              <p className='text-sm lg:text-base pr-4'><strong>{ postsNumber ? postsNumber.length : 0}</strong> posts</p>
+              <p className='text-sm lg:text-base' > <strong> 100 </strong> followed </p>
+            </div>
+          
+            <div className='mt-2'> <p className=' text-sm'>{userInfo.presentation}</p></div>
           </div>
-        
-          <div className='mt-2'> <p className='text-white text-sm'>{userInfo.presentation}</p></div>
-        </div>
-        
-        <div className='mt-8'>
-            {
-              userOnline.user === userInfo.user 
-              ? <button className='border px-2 text-white bg-auth-primary hover:bg-primary'> Edit Profile </button>
-              : <button className='border px-2 text-white bg-auth-primary hover:bg-primary' > Follow </button>
-            }
-        </div>
+       </div>
+          
+          <div className='h-full lg:ml-8 mr-2'>
+              {
+                userOnline.user === userInfo.user 
+                ? <button className='text-xs lg:text-base border px-2 text-white bg-auth-primary hover:bg-primary mt-8'> Edit Profile </button>
+                : <button className=' text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary mt-8' > Follow </button>
+              }
+          </div>
       </> 
     )
   }

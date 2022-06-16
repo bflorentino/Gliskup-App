@@ -44,7 +44,7 @@ const Entry = () => {
   }
 
   return (
-    <div className='flex flex-col bg-white mobile:w-full mobile:my-1 lg:rounded-lg lg:w-3/5'>
+    <div className='flex flex-col bg-white mobile:w-full mobile:my-1 lg:rounded-lg sd:w-8/12 lg:w-6/12'>
        <div className=' w-full  flex justify-between border-b border-gray py-3 items-center'>
          <h1 className='text-2xl ml-4 font-inter'>Make a post</h1>
          <span> 

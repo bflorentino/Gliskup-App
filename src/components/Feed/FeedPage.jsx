@@ -6,7 +6,6 @@ import MainNavBar from '../Navigation/MainNavBar'
 import Post from '../Posts/PostVisualization/Post'
 import Entry from '../Posts/PostBuilding/Entry'
 import PostCreate from '../Posts/PostBuilding/PostCreate'
-import Search from '../Search/Search'
 import Loading from '../ui/Loading'
 import PostStatisticsWindow from '../Posts/Post-Statitics-View/PostStatisticsWindow'
 
@@ -28,25 +27,27 @@ const FeedPage = () => {
       {
         firstTime ? <UserInitConfig />
         :(
-          <> 
-            <MainNavBar />
-            <main className=' lg:ml-10 flex flex-col items-center w-full h-screen overflow-auto '>
-              <Search />
-              {
-                !postBuilderOpened ? <PostCreate />   :  <Entry />
+          <>
+            <div className='flex flex-col h-screen w-full'>
+              <MainNavBar />
+              <main className='flex flex-col items-center w-full overflow-auto mt-[70px]'>
+                {
+                  !postBuilderOpened ? <PostCreate />   :  <Entry />
+                }
+
+                {
+                  !posts ? <Loading /> 
+                          : posts.map((post, i) => 
+                          <Post post={post} key={i}  />
+                )
               }
 
-              {
-                !posts ? <Loading /> 
-                        : posts.map((post, i) => 
-                        <Post post={post} key={i}  />
-              )
+            { 
+              openW &&  <PostStatisticsWindow /> 
             }
+                </main>
 
-        { 
-          openW &&  <PostStatisticsWindow /> 
-        }
-            </main>
+            </div>
           </>
         )
       }

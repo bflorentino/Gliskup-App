@@ -8,7 +8,7 @@ import PostStatistics from './PostStatistics';
 const Post = ({post}) => {
   
   return (  
-    <article className='bg-white mobile:w-full mobile:my-1 lg:rounded-lg sd:w-8/12 '>
+    <article className='bg-white mobile:w-full mobile:my-1 lg:rounded-lg sd:w-8/12 lg:w-6/12 '>
           <div className='flex justify-between'>
             <User user = {post.fromUser} />
             <span className='text-gray float-left text-sm mr-4 mt-2'>{post.relativeTime}</span>

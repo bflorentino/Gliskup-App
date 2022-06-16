@@ -8,7 +8,8 @@ const Search = () => {
   const dispatch = useDispatch();
  
   useEffect(() => {
-    dispatch(getUsersToSearch())
+    if(searchPattern !== "")
+      dispatch(getUsersToSearch(searchPattern))
   }, [searchPattern, dispatch])
 
   const handleInputChanges = (e) => {

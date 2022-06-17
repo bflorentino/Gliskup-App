@@ -24,10 +24,10 @@ const Search = () => {
 
   return (
         <>
-        <div className='w-11/12 sd:w-4/12' >
+        <div className='w-11/12 sd:w-6/12' >
             <input 
                 type="text" 
-                className='search bg-transparent text-white w-full p-2  mt-1 h-[35px]'
+                className='search bg-transparent text-white w-full p-2  mt-1 h-[35px] sd:h-[40px] ml-2 rounded-lg'
                 placeholder='Search'
                 name='search'
                 autoComplete='off'

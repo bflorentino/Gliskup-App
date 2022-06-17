@@ -8,6 +8,7 @@ import Entry from '../Posts/PostBuilding/Entry'
 import PostCreate from '../Posts/PostBuilding/PostCreate'
 import Loading from '../ui/Loading'
 import PostStatisticsWindow from '../Posts/Post-Statitics-View/PostStatisticsWindow'
+import Sidebar from '../Navigation/Sidebar'
 
 const FeedPage = () => {
 
@@ -30,24 +31,26 @@ const FeedPage = () => {
           <>
             <div className='flex flex-col h-screen w-full'>
               <MainNavBar />
-              <main className='flex flex-col items-center w-full overflow-auto mt-[70px]'>
-                {
-                  !postBuilderOpened ? <PostCreate />   :  <Entry />
-                }
+              <div className='flex overflow-auto'>
+                <Sidebar />
+                <main className='flex flex-col items-center w-[80%] overflow-auto mt-[70px]'>
+                  {
+                    !postBuilderOpened ? <PostCreate />   :  <Entry />
+                  }
 
-                {
-                  !posts ? <Loading /> 
-                          : posts.map((post, i) => 
-                          <Post post={post} key={i}  />
-                )
+                  {
+                    !posts ? <Loading /> 
+                    : posts.map((post, i) => 
+                    <Post post={post} key={i}  />
+                    )
+                  }
+
+              { 
+                openW &&  <PostStatisticsWindow /> 
               }
-
-            { 
-              openW &&  <PostStatisticsWindow /> 
-            }
-                </main>
-
-            </div>
+              </main>
+              </div>
+              </div>
           </>
         )
       }

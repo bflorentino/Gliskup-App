@@ -6,7 +6,7 @@ const ProfileBanner = ({userInfo, postsNumber}) => {
   const userOnline = useSelector(state => state.authReducer);
 
   return (
-    <div className='flex mobile:w-full lg:rounded-lg sd:w-8/12 lg:w-6/12  py-4 bg-white rounded items-center justify-between'>
+    <div className='flex mobile:w-full lg:rounded-lg sd:w-8/12 lg:w-7/12  py-4 bg-white rounded items-center justify-between'>
     {
       userInfo && (  
        <>

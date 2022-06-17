@@ -13,7 +13,7 @@ const PostCreate = () => {
 
   return (
     <>
-      <article className='bg-white mobile:w-full mobile:my-1 lg:rounded-lg sd:w-8/12 lg:w-6/12 2 h-[115px] flex'>
+      <article className='bg-white mobile:w-full mobile:my-1 lg:rounded-lg sd:w-8/12 lg:w-7/12 2 h-[115px] flex'>
           <div className='flex mt-1'>
               <img src={profilePic} alt="" className='w-10 h-10 rounded-full ml-4 mt-2'/>
           </div>

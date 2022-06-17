@@ -18,7 +18,7 @@ const UserReactionGrid = ( {reaction} ) => {
   return (
     <>
       <div className='flex flex-row justify-between items-center mt-3'>
-        <User user={reaction.user || user} sizePic={'12'} /> 
+        <User user={reaction.user || user}  /> 
         <img src={`../../assets/${imgReactionsNames[reaction.reactionType - 1]}.png`} alt="" className='w-9 h-9 mr-4' />
       </div>
       <div className='border-b border-border-line mt-2 m-auto w-[85%]'></div>

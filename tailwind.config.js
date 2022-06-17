@@ -22,6 +22,8 @@ module.exports = {
       'gray-text' : '#EBEBEB',
       'border-line' : '#E5E5E5', 
       'transparent' : 'rgba(0,0,0,0.2)',
+      'green-user' : '#0FB45A',
+      'blue-bar' : '#0079BF'
     },
     fontFamily:{
       'ubuntu' : ['Ubuntu', 'sans-serif'],

@@ -1,8 +1,7 @@
 const BaseURL = 'http://localhost:80'
 
 export const searchUsersService = async (searchPattern) => {
-
-    console.log(searchPattern)
+    
     const URL = `${BaseURL}/search/${searchPattern}`;
 
     const req = {

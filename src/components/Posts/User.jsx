@@ -1,16 +1,21 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { clearPosts } from '../../actions/postActions'
+import { removeUsersToSearch } from '../../actions/searchUserActions'
 
 const User = ({user:{profilePic, user, name, lastName}, sizePic}) => {
 
   const dispatch = useDispatch()
   const history = useNavigate();
+  const location = useLocation()
 
-  const goToProfilePage = () => {  
+  const goToProfilePage = () => {
+    if(location.pathname !== `/gliskup/userProfile/${user}`){
       dispatch(clearPosts())
+      dispatch(removeUsersToSearch())
       history(`/gliskup/userProfile/${user}`, {replace : true} );
+    }
   }
 
     return (

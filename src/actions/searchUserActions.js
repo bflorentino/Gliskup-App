@@ -9,9 +9,15 @@ export const getUsersToSearch = (searchPattern) => {
     }
 }
 
+export const removeUsersToSearch = () => {
+    return  {
+        type: types.removeUsersToSearch
+    }
+}
+
 export const setUsersToSearch = (users) => {
     return {
         type: types.setUsersToSearch,
-        payload : users
+        payload : users,
     }
 }

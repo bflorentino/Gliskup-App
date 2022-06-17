@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { types } from "../types/types";
 
+
 const initialState = null;
 
 export const searchReducer = createReducer(initialState, builder => {

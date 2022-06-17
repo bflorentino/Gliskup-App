@@ -6,7 +6,6 @@ import { getProfileInfo } from '../../actions/usersActions'
 import MainNavBar from '../Navigation/MainNavBar'
 import PostStatisticsWindow from '../Posts/Post-Statitics-View/PostStatisticsWindow'
 import Post from '../Posts/PostVisualization/Post'
-import Search from '../Search/Search'
 import Loading from '../ui/Loading'
 import ProfileBanner from './ProfileBanner'
 
@@ -26,10 +25,10 @@ const UserProfilePage = () => {
 
   return (
     <>
+    <div className='flex flex-col h-screen w-full'>
       <MainNavBar />
-      <main className=' lg:ml-10 flex flex-col items-center w-full h-screen overflow-auto'>
-      <Search />
-
+      <main className=' flex flex-col items-center w-full overflow-auto mt-[70px]'>
+ 
       <ProfileBanner userInfo={userData && userData} postsNumber={posts} />
       {
           !posts ? <Loading /> 
@@ -41,6 +40,7 @@ const UserProfilePage = () => {
           openW &&  <PostStatisticsWindow /> 
         }
       </main>
+    </div>
     </>
   )
 }

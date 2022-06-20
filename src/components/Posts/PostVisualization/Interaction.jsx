@@ -25,7 +25,6 @@ const Interaction = ({postId, reacted, ownReactionType}) => {
                   reactionsStyles={reactionsStyles} 
                   reactionsHoverStyles = {reactionsHoverStyles}
                   postId = {postId}
-                  reacted = {reacted}
                 />
               </div> 
             )
@@ -33,11 +32,12 @@ const Interaction = ({postId, reacted, ownReactionType}) => {
               className= 'flex items-center justify-center py-2 w-1/2 hover:bg-gray-text'
               onMouseEnter={() => !reacted && setViewReactions(true)} 
             >
+              
               {  
                 /* Reactions are rendered acording to reacted value. These conditionals, render a reaction type depending the value of ownReactionType. ownReactionType makes references to the reaction made by the online user in a specific post.
                 When reacted is false it means there's no a reaction from the user in a post, allowing the user to make a reaction. */
                 
-                reacted 
+                reacted // In case reacted is true (user reacted to post)
                   ?
                     ownReactionType === 1 ? <p className={`${'text-link font-bold flex items-center' }`}
                                                    onClick = {handleRemoveReaction}>
@@ -83,7 +83,7 @@ const Interaction = ({postId, reacted, ownReactionType}) => {
                                                   alt='curious'
                                                   className='w-6 h-6'/>Curious</p> 
         
-                  :<p>React To Post</p>
+                  :<p>React To Post</p> // IN case the reaced value is false (user has not reacted to post)
                 } 
             </button>)
         }

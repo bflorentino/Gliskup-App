@@ -11,7 +11,7 @@ const ReactionsMenu = ({reactions}) => {
   const handleCloseMenu = (e) => {
 
     document.getElementById("portal").classList.toggle('opacity')
-    document.getElementById("portal").classList.toggle("display-none");
+    document.getElementById("portal").classList.toggle("show-modal");
     dispatch(setClosedStatsWindow())
   } 
 

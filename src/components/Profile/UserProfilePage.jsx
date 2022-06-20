@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getUserPosts } from '../../actions/postActions'
+import { setClosedStatsWindow } from '../../actions/PostStatisticsActions'
 import { getProfileInfo } from '../../actions/usersActions'
 import MainNavBar from '../Navigation/MainNavBar'
 import PostStatisticsWindow from '../Posts/Post-Statitics-View/PostStatisticsWindow'
@@ -19,8 +20,14 @@ const UserProfilePage = () => {
   const userData = useSelector(state => state.usersReducer);
 
   useEffect(()=> {
+    
     dispatch(getUserPosts(user, userTo))
     dispatch(getProfileInfo(userTo))
+    
+    dispatch(setClosedStatsWindow())
+    document.getElementById("portal").classList.remove("show-modal")
+    document.getElementById("root").classList.remove("opacity")
+
   }, [userTo, dispatch, user])
 
   return (
@@ -32,10 +39,12 @@ const UserProfilePage = () => {
       <ProfileBanner userInfo={userData && userData} postsNumber={posts} />
       {
           !posts ? <Loading /> 
-            : posts.map((post, i) => 
+            :(posts.length > 0 
+              ?posts.map((post, i) => 
               <Post post={post} key={i}  />
               )
-            }
+              : <p className='text-white mt-4 font-thin font-inter'>This user has not posted aything yet</p>
+            )}
         { 
           openW &&  <PostStatisticsWindow /> 
         }

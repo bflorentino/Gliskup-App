@@ -11,7 +11,7 @@ const ProfileBanner = ({userInfo, postsNumber}) => {
       userInfo && (  
        <>
        <div className='flex'>
-        <img src={`${userInfo?.profilePic && userInfo.profilePic}`} 
+        <img src={userInfo.profilePic || '../../assets/no-user-image.jpg'} 
             alt=""
             className='w-20 h-20 lg:w-32 lg:h-32 rounded-full' 
         />

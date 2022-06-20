@@ -33,7 +33,7 @@ const FeedPage = () => {
               <MainNavBar />
               <div className='flex overflow-auto'>
                 <Sidebar />
-                <main className='flex flex-col items-center w-[80%] overflow-auto mt-[70px]'>
+                <main className='flex flex-col items-center w-full xl:w-[80%] overflow-auto mt-[70px]'>
                   {
                     !postBuilderOpened ? <PostCreate />   :  <Entry />
                   }

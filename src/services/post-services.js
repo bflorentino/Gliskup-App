@@ -45,3 +45,19 @@ export const getUserPostsServices = async (userRequestFrom, userRequestTo)  => {
     const { data } = await res.json()
     return data
 }
+
+export const removePostService = async(post) => {
+
+    const URL = `${baseURL}/post/delete`;
+
+    const req = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(post)
+    }
+
+    const res = await fetch(URL, req);
+    return await res.json()
+}

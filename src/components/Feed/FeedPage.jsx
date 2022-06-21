@@ -41,7 +41,7 @@ const FeedPage = () => {
                   {
                     !posts ? <Loading /> 
                     : posts.map((post, i) => 
-                    <Post post={post} key={i}  />
+                    <Post post={post} isOnMyOwnProfile={false} key={i}  />
                     )
                   }
 

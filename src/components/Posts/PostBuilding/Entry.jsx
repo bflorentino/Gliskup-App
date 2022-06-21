@@ -91,7 +91,7 @@ const Entry = () => {
            )
            :
           <button className='flex items-center' onClick={() => setImage(null)}>  
-                <img src='./assets/Remove.png' alt='Remove' className='w-8 rounded-full' />
+                <img src='../../assets/Remove.png' alt='Remove' className='w-8 rounded-full' />
               <p className='text-xs font-inter ml-2'>Remove Picture</p>
           </button>
          }

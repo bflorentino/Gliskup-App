@@ -35,7 +35,7 @@ export const postReducer = createReducer(initialState, (builder => {
         )
     })
     .addCase(types.removePost, (state, action) => {
-    
+        return current(state).filter(post => action.payload !== post._id)
     })
     .addCase(types.clearPosts, (state, action) => {
         return initialState

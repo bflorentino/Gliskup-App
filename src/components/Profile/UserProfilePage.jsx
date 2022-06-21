@@ -41,7 +41,7 @@ const UserProfilePage = () => {
           !posts ? <Loading /> 
             :(posts.length > 0 
               ?posts.map((post, i) => 
-              <Post post={post} key={i}  />
+              <Post post={post} isOnMyOwnProfile={userTo===user} key={i}  />
               )
               : <p className='text-white mt-4 font-thin font-inter'>This user has not posted aything yet</p>
             )}

@@ -1,9 +1,13 @@
 // import Swal from "sweetalert2";
-import { getPostsServices, getUserPostsServices, uploadPostService } from "../services/post-services";
+import { getPostsServices, 
+        getUserPostsServices, 
+        removePostService, 
+        uploadPostService } from "../services/post-services";
 import { types } from "../types/types";
 import { setClosedPostEntry } from '../actions/postEntryActions'
 import { removeLoading } from "./InterfaceActions";
 import { reactionService, removeReactionService } from "../services/reactions-Services";
+import Swal from "sweetalert2";
 
 // Asynchronous actions 
 export const uploadPost = (post) => {
@@ -50,8 +54,21 @@ export const removeReactionToPost = (reaction) => {
     }
 }
 
-// Synchronous actions
+export const removePost = (postId, imagePath) => {
+    return async(dispatch) => {
+        removePostService({postId, imagePath})
+          .then(res => {
+              if(res.success){
+                  Swal.fire("Post Deleted", "Post has been deleted", "success" )
+                  dispatch(setPostRemoved(postId))
+              }else{
+                Swal.fire("Error", "Post could not be deleted", "error" )
+              }
+            })
+    }
+}
 
+// Synchronous actions
 export const setPosts = (posts) => {
     return {
         type: types.getPosts,
@@ -73,6 +90,13 @@ export const setNewPost = (post) => {
         payload: post
     }
 }
+
+export const setPostRemoved = (postId) => (
+    {
+        type: types.removePost,
+        payload: postId
+    }
+) 
 
 export const addReactionToPost = (post) => {
     return {

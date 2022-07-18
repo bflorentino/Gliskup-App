@@ -22,5 +22,7 @@ export const types = {
     setProfileData : 'Users-setProfileData',
     removeProfileData : 'Users-removeProfileData',
     setUsersToSearch : 'search-setUsersToSearch',
-    removeUsersToSearch : 'search-removeUsersToSearch'
+    removeUsersToSearch : 'search-removeUsersToSearch',
+    setSuggestedUsers : 'following-setSuggestedUsers',
+    removeSuggestedUsers: 'following-removeSuggestedUsers'
 }

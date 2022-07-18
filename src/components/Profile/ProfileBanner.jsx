@@ -21,9 +21,9 @@ const ProfileBanner = ({userInfo, postsNumber}) => {
             <p className='text-gray'>@{userInfo?.user}</p>
 
             <div className='flex  mt-2'>
-              <p className=' text-sm lg:text-base pr-4'><strong>100</strong> followers</p>
+              <p className=' text-sm lg:text-base pr-4'><strong>{userInfo.followers}</strong> followers</p>
               <p className='text-sm lg:text-base pr-4'><strong>{ postsNumber ? postsNumber.length : 0}</strong> posts</p>
-              <p className='text-sm lg:text-base' > <strong> 100 </strong> followed </p>
+              <p className='text-sm lg:text-base' > <strong> {userInfo.followed} </strong> followed </p>
             </div>
           
             <div className='mt-2'> <p className=' text-sm'>{userInfo.presentation}</p></div>

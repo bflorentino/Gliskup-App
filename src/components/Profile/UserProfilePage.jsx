@@ -34,7 +34,7 @@ const UserProfilePage = () => {
     <>
     <div className='flex flex-col h-screen w-full'>
       <MainNavBar />
-      <main className=' flex flex-col items-center w-full overflow-auto mt-[70px]'>
+      <main className='flex flex-col items-center w-full overflow-auto mt-[70px]'>
  
       <ProfileBanner userInfo={userData && userData} postsNumber={posts} />
       {

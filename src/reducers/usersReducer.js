@@ -1,4 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer, current } from "@reduxjs/toolkit";
 import { types } from "../types/types";
 
 const initialState = null;
@@ -10,5 +10,8 @@ export const usersReducer = createReducer(initialState, builder => {
     })
     .addCase(types.removeProfileData, (state, action) => {
         return initialState;
+    })
+    .addCase(types.updateFollowingProfileData, (state, action) => {
+        return {...current(state), followed: action.payload}
     })
 })

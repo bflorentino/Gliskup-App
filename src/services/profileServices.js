@@ -1,8 +1,8 @@
 const baseURL = 'http://localhost:80'
 
-export const getProfileDataService = async (userRequest) => {
+export const getProfileDataService = async (userRequest, userOnline) => {
 
-    const URL = `${baseURL}/user/profileData/${userRequest}`;
+    const URL = `${baseURL}/user/profileData/${userRequest}/${userOnline}`;
 
     const req = {
         method: 'GET'

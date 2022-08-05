@@ -1,10 +1,10 @@
 import { types } from "../types/types";
 import { getProfileDataService } from "../services/profileServices";
 
-export const getProfileInfo = (user) => {
+export const getProfileInfo = (userRequest, userOnline) => {
 
     return async (dispatch) => {
-        getProfileDataService(user).then(data => {
+        getProfileDataService(userRequest, userOnline).then(data => {
             dispatch(setProfileData(data))
         })
     }

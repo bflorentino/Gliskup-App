@@ -21,7 +21,7 @@ const SugUsersPage = () => {
 
         <h1 className='text-3xl text-white font-bold font-inter'>Suggestions</h1>
 
-        <ul className = 'w-2/5 mb-12'>
+        <ul className = 'w-[90%] sd:w-[70%] lg:w-1/2  mb-12'>
           {
             suggestedUsers.map(user => (
               <UserFollowGrid key={user.user} user={user} />

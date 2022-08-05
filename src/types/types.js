@@ -21,8 +21,9 @@ export const types = {
     setReactionsTypeStats : 'PostStatiticsWindow-setReactionStats',
     setProfileData : 'Users-setProfileData',
     removeProfileData : 'Users-removeProfileData',
+    updateFollowingProfileData: 'Users-updateFollowing',
     setUsersToSearch : 'search-setUsersToSearch',
     removeUsersToSearch : 'search-removeUsersToSearch',
     setSuggestedUsers : 'following-setSuggestedUsers',
-    removeSuggestedUsers: 'following-removeSuggestedUsers'
+    removeSuggestedUser: 'following-removeSuggestedUsers'
 }

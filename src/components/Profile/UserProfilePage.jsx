@@ -15,20 +15,20 @@ const UserProfilePage = () => {
   const posts = useSelector(state => state.posts);
   const {openW} = useSelector(state => state.postStatsWindow);
   const dispatch = useDispatch();
-  const {userTo} = useParams()
+  const {userRequest} = useParams()
   const {user} = useSelector(state => state.authReducer);
   const userData = useSelector(state => state.usersReducer);
 
   useEffect(()=> {
     
-    dispatch(getUserPosts(user, userTo))
-    dispatch(getProfileInfo(userTo))
-    
+    dispatch(getUserPosts(user, userRequest))
+    dispatch(getProfileInfo(userRequest, user))
     dispatch(setClosedStatsWindow())
+
     document.getElementById("portal").classList.remove("show-modal")
     document.getElementById("root").classList.remove("opacity")
 
-  }, [userTo, dispatch, user])
+  }, [userRequest, dispatch, user])
 
   return (
     <>
@@ -41,7 +41,7 @@ const UserProfilePage = () => {
           !posts ? <Loading /> 
             :(posts.length > 0 
               ?posts.map((post, i) => 
-              <Post post={post} isOnMyOwnProfile={userTo===user} key={i}  />
+              <Post post={post} isOnMyOwnProfile={userRequest===user} key={i}  />
               )
               : <p className='text-white mt-4 font-thin font-inter'>This user has not posted aything yet</p>
             )}

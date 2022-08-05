@@ -33,8 +33,14 @@ const ProfileBanner = ({userInfo, postsNumber}) => {
           <div className='h-full lg:ml-8 mr-2'>
               {
                 userOnline.user === userInfo.user 
-                ? <button className='text-xs lg:text-base border px-2 text-white bg-auth-primary hover:bg-primary mt-8'> Edit Profile </button>
-                : <button className=' text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary mt-8' > Follow </button>
+                ? 
+                  <button className='text-xs lg:text-base border px-2 text-white bg-auth-primary hover:bg-primary mt-8'> Edit Profile </button>
+                : 
+                  userInfo.followedByUserOnline
+                  ? 
+                    <button className='text-xs lg:text-base border px-2 text-white bg-auth-primary hover:bg-primary mt-8' > Following </button>
+                  :
+                    <button className='text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary mt-8' > Follow </button>
               }
           </div>
       </> 

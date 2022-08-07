@@ -12,6 +12,9 @@ export const usersReducer = createReducer(initialState, builder => {
         return initialState;
     })
     .addCase(types.updateFollowingProfileData, (state, action) => {
-        return {...current(state), followed: action.payload}
+        return {...current(state), 
+                followers: action.payload ? current(state).followers + 1 : current(state).followers - 1, 
+                followedByUserOnline: action.payload
+            }
     })
 })

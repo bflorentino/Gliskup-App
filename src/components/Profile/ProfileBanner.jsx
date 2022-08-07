@@ -1,9 +1,25 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { updateProfileFollow } from '../../actions/followingActions';
+import { useFetch } from '../../hooks/useFetch';
+import BaseURL from '../../services/url';
+import { useDispatch } from 'react-redux'
 
 const ProfileBanner = ({userInfo, postsNumber}) => {
 
   const userOnline = useSelector(state => state.authReducer);
+  const { handleFetchValues } = useFetch({})
+  const dispatch = useDispatch()
+
+  const handleFollow = (act) => {
+
+    const url = act
+      ? `${BaseURL}/follow/${userOnline.user}/${userInfo.user}`
+      : `${BaseURL}/follow/unfollow/${userOnline.user}/${userInfo.user}`
+    
+      handleFetchValues( url, 'POST',{'Content-Type': 'application/json'})
+      dispatch(updateProfileFollow(act))
+  }
 
   return (
     <div className='flex mobile:w-full lg:rounded-lg sd:w-8/12 lg:w-7/12  py-4 bg-white rounded items-center justify-between'>
@@ -38,9 +54,9 @@ const ProfileBanner = ({userInfo, postsNumber}) => {
                 : 
                   userInfo.followedByUserOnline
                   ? 
-                    <button className='text-xs lg:text-base border px-2 text-white bg-auth-primary hover:bg-primary mt-8' > Following </button>
+                    <button className='text-xs lg:text-base border px-2 text-white bg-auth-primary hover:bg-primary mt-8'  onClick={() => handleFollow(false)}  > Following </button>
                   :
-                    <button className='text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary mt-8' > Follow </button>
+                    <button className='text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary mt-8' onClick={() => handleFollow(true)} > Follow </button>
               }
           </div>
       </> 
@@ -50,4 +66,4 @@ const ProfileBanner = ({userInfo, postsNumber}) => {
   )  
 }
 
-export default ProfileBanner
+export default ProfileBanner;

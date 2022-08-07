@@ -1,4 +1,4 @@
-import { getSuggestedUsers } from "../services/followUsers";
+import { getSuggestedUsers } from "../services/followServices";
 import { types } from "../types/types";
 
 export const setSuggestedUsersAsync = (user) => {
@@ -17,5 +17,14 @@ const setSuggestedUsers = (suggestedUsers) => {
         payload : suggestedUsers,
         type: types.setSuggestedUsers
     }
-
 }
+
+export const updateProfileFollow = (followResult) => ({
+    type: types.updateFollowingProfileData,
+    payload: followResult
+})
+
+export const removeOneSuggestedUser = (user) => ({
+    type: types.removeSuggestedUser,
+    payload: user
+})

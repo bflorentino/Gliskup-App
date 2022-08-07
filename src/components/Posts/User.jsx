@@ -10,7 +10,6 @@ const User = ({user:{profilePic, user, name, lastName}, sizePic}) => {
   const dispatch = useDispatch()
   const history = useNavigate();
   const location = useLocation()
-  console.log(user)
 
   const goToProfilePage = () => {
     if(location.pathname !== `/gliskup/userProfile/${user}`){

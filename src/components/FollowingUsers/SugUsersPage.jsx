@@ -2,17 +2,29 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import MainNavBar from '../Navigation/MainNavBar'
 import UserFollowGrid from './UserFollowGrid'
-import { setSuggestedUsersAsync } from '../../actions/followingActions'
+import { setSuggestedUsers } from '../../actions/followingActions'
+import { useFetch } from '../../hooks/useFetch'
+import BaseURL from '../../services/url'
 
 const SugUsersPage = () => {
   
   const { user } = useSelector(state => state.authReducer)
   const suggestedUsers = useSelector(state => state.followingReducer) 
   const dispatch = useDispatch();
+  const {handleFetchValues, resultFetch} = useFetch();
 
   useEffect(()=> {
-    dispatch(setSuggestedUsersAsync(user))
-  }, [user, dispatch])
+    handleFetchValues(`${BaseURL}/follow/suggestedUsers/${user}`, 'GET') 
+  }, [user, handleFetchValues])
+
+  useEffect(() => {
+    if(!resultFetch) return
+
+    if(resultFetch.success){
+      dispatch(setSuggestedUsers(resultFetch.data))
+    }
+
+  }, [resultFetch, dispatch])
 
   return (
     <div className='flex flex-col h-screen w-full'>

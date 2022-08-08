@@ -37,15 +37,14 @@ export const useFetch = (state = {}) => {
         }
     }, [fetchValues, fetchData])
 
-    const handleFetchValues = (url, method, headers, body) => {
-        
+    const handleFetchValues = useCallback((url, method, headers, body) => {
         setFetchValues({
             url,
             method,
             headers,
             body
         })
-    }
+    }, [])
     
     return { handleFetchValues, resultFetch}
 }

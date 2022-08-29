@@ -1,24 +1,54 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { updateProfileFollow } from '../../actions/followingActions';
 import { useFetch } from '../../hooks/useFetch';
 import BaseURL from '../../services/url';
 import { useDispatch } from 'react-redux'
+import { useNotification } from '../../hooks/useNotification';
 
-const ProfileBanner = ({userInfo, postsNumber}) => {
+const ProfileBanner = ({userInfo, postsNumber, setFollowersOpen}) => {
 
   const userOnline = useSelector(state => state.authReducer);
-  const { handleFetchValues } = useFetch({})
+  const { handleFetchValues, resultFetch } = useFetch({})
   const dispatch = useDispatch()
+  
+  const notifyFollow = useNotification({})
+  const notifyErrorFollow = useNotification({message:`An error ocurred in following this user`, variant:"error"})
+
+  useEffect(() => {
+
+    if(resultFetch === null) return
+
+    if(!resultFetch.success){
+        notifyErrorFollow.showNotification()
+        return
+    }
+
+    notifyFollow.showNotification()
+
+  }, [resultFetch, notifyFollow, notifyErrorFollow] )
 
   const handleFollow = (act) => {
 
-    const url = act
-      ? `${BaseURL}/follow/${userOnline.user}/${userInfo.user}`
-      : `${BaseURL}/follow/unfollow/${userOnline.user}/${userInfo.user}`
-    
+    let url;
+
+    if(act){
+      url = `${BaseURL}/follow/${userOnline.user}/${userInfo.user}`
+      notifyFollow.handleNotificationParams(`You started following ${userInfo.user}`, "success")
+    }
+    else{
+      url = `${BaseURL}/follow/unfollow/${userOnline.user}/${userInfo.user}`
+      notifyFollow.handleNotificationParams(`You stoped following ${userInfo.user}`, "warning")
+
+    }
       handleFetchValues( url, 'POST',{'Content-Type': 'application/json'})
       dispatch(updateProfileFollow(act))
+  }
+
+  const handleGetUsersFollow = (followKind) => {
+    document.getElementById("portal").classList.toggle('opacity')
+    document.getElementById("portal").classList.toggle("show-modal");
+    setFollowersOpen({open: true, toShow: followKind})
   }
 
   return (
@@ -37,9 +67,22 @@ const ProfileBanner = ({userInfo, postsNumber}) => {
             <p className='text-gray'>@{userInfo?.user}</p>
 
             <div className='flex  mt-2'>
-              <p className=' text-sm lg:text-base pr-4'><strong>{userInfo.followers}</strong> followers</p>
+              
+              <p 
+                className=' text-sm lg:text-base pr-4 cursor-pointer hover:underline'
+                onClick={()=>handleGetUsersFollow("followers")} 
+              >
+                  <strong>{userInfo.followers}</strong> followers
+              </p>
+              
               <p className='text-sm lg:text-base pr-4'><strong>{ postsNumber ? postsNumber.length : 0}</strong> posts</p>
-              <p className='text-sm lg:text-base' > <strong> {userInfo.followed} </strong> followed </p>
+              
+              <p 
+                className='text-sm lg:text-base cursor-pointer hover:underline' 
+                onClick={()=>handleGetUsersFollow("followed")} 
+              > 
+                <strong> {userInfo.followed} </strong> followed 
+              </p>
             </div>
           
             <div className='mt-2'> <p className=' text-sm'>{userInfo.presentation}</p></div>

@@ -25,5 +25,6 @@ export const types = {
     setUsersToSearch : 'search-setUsersToSearch',
     removeUsersToSearch : 'search-removeUsersToSearch',
     setSuggestedUsers : 'following-setSuggestedUsers',
-    removeSuggestedUser: 'following-removeSuggestedUsers'
+    removeSuggestedUser: 'following-removeSuggestedUsers',
+    followSuggestedUser: 'following-followSuggestedUser'
 }

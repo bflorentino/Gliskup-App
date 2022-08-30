@@ -12,4 +12,14 @@ export const followingReducer = createReducer(initialState, (builder => {
     .addCase(types.removeSuggestedUser, (state, action) => {
         return current(state).filter(user => user.user !== action.payload)
     })
+    .addCase(types.followSuggestedUser, (state, action) => {
+        console.log(current(state))
+        return current(state).map(user => {
+            if(user.user !== action.payload)
+                return user
+
+            return {...user, followedByUserOnline : !user.followedByUserOnline }
+        })
+    })
 }))
+

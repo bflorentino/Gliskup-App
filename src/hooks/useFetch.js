@@ -45,6 +45,11 @@ export const useFetch = (state = {}) => {
             body
         })
     }, [])
+
+    const resetFetchValues = useCallback(() => {
+        setFetchValues({})
+        setResultFetch(null)
+    }, [])
     
-    return { handleFetchValues, resultFetch}
+    return { handleFetchValues, resultFetch, resetFetchValues}
 }

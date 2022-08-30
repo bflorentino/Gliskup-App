@@ -16,6 +16,7 @@ const User = ({user:{profilePic, user, name, lastName}, sizePic}) => {
       dispatch(clearPosts())
       dispatch(removeProfileData())
       dispatch(removeUsersToSearch())
+      history('/gliskup/feed')
       history(`/gliskup/userProfile/${user}`, {replace : true} );
     }
   }

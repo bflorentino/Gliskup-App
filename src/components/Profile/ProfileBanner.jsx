@@ -9,7 +9,7 @@ import { useNotification } from '../../hooks/useNotification';
 const ProfileBanner = ({userInfo, postsNumber, setFollowersOpen}) => {
 
   const userOnline = useSelector(state => state.authReducer);
-  const { handleFetchValues, resultFetch } = useFetch({})
+  const { handleFetchValues, resultFetch, resetFetchValues } = useFetch({})
   const dispatch = useDispatch()
   
   const notifyFollow = useNotification({})
@@ -25,8 +25,9 @@ const ProfileBanner = ({userInfo, postsNumber, setFollowersOpen}) => {
     }
 
     notifyFollow.showNotification()
-
-  }, [resultFetch, notifyFollow, notifyErrorFollow] )
+    resetFetchValues()
+    
+  }, [resultFetch, notifyFollow, notifyErrorFollow, resetFetchValues] )
 
   const handleFollow = (act) => {
 

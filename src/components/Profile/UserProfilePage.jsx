@@ -26,6 +26,7 @@ const UserProfilePage = () => {
     dispatch(getUserPosts(user, userRequest))
     dispatch(getProfileInfo(userRequest, user))
     dispatch(setClosedStatsWindow())
+    setFollowersOpen({open: false, toShow:null})
 
     document.getElementById("portal").classList.remove("show-modal")
     document.getElementById("root").classList.remove("opacity")
@@ -55,7 +56,13 @@ const UserProfilePage = () => {
           openW &&  <PostStatisticsWindow /> 
         }
         {
-          isFollowersOpen.open && <FollowUsersWindow toShow={isFollowersOpen.toShow} userTo={userData.user} />
+          isFollowersOpen.open && (
+            <FollowUsersWindow 
+              toShow={isFollowersOpen.toShow} 
+              userTo={userData?.user}
+              setFollowersOpen={setFollowersOpen} 
+            />
+          )
         }
       </main>
     </div>

@@ -36,7 +36,7 @@ const SugUsersPage = () => {
         <ul className = 'w-[90%] sd:w-[70%] lg:w-1/2  mb-12'>
           {
             suggestedUsers.map(user => (
-              <UserFollowGrid key={user.user} user={user} />
+              <UserFollowGrid key={user.user} userFollowInfo={user} />
             ))
           }
         </ul>

@@ -17,3 +17,8 @@ export const removeOneSuggestedUser = (user) => ({
     type: types.removeSuggestedUser,
     payload: user
 })
+
+export const followSuggestedUser = (user) => ({
+    type: types.followSuggestedUser,
+    payload: user
+})

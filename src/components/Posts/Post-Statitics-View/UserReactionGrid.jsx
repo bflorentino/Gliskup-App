@@ -2,18 +2,19 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import User from '../User';
 
+const imgReactionsNames = [
+  'like-reaction', 
+  'love-reaction', 
+  'funny-reaction',
+  'sad-reaction', 
+  'surprise-reaction',
+  'angry-reaction',
+  'curious-reaction'
+]
+
 const UserReactionGrid = ( {reaction} ) => {
 
   const user = useSelector(state => state.authReducer);
-
-  const imgReactionsNames = ['like-reaction', 
-    'love-reaction', 
-    'funny-reaction',
-    'sad-reaction', 
-    'surprise-reaction',
-    'angry-reaction',
-    'curious-reaction'
-  ]
 
   return (
     <>

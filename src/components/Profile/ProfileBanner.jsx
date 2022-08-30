@@ -10,38 +10,35 @@ const ProfileBanner = ({userInfo, postsNumber, setFollowersOpen}) => {
 
   const userOnline = useSelector(state => state.authReducer);
   const { handleFetchValues, resultFetch, resetFetchValues } = useFetch({})
-  const dispatch = useDispatch()
-  
-  const notifyFollow = useNotification({})
-  const notifyErrorFollow = useNotification({message:`An error ocurred in following this user`, variant:"error"})
+  const dispatch = useDispatch()  
+  const {showNotification, handleNotificationParams, notificationParams} = useNotification({})
 
   useEffect(() => {
 
     if(resultFetch === null) return
 
     if(!resultFetch.success){
-        notifyErrorFollow.showNotification()
+        handleNotificationParams(`An error ocurred in following ${userInfo?.user}`, 'error')
         return
     }
 
-    notifyFollow.showNotification()
+    resultFetch.message === "Started Following" 
+      ? handleNotificationParams(`You started following ${userInfo?.user}`, "success")
+      : handleNotificationParams(`You stoped following ${userInfo?.user}`, "warning")
+
     resetFetchValues()
-    
-  }, [resultFetch, notifyFollow, notifyErrorFollow, resetFetchValues] )
+  }, [resultFetch, handleNotificationParams, userInfo?.user, resetFetchValues])
+
+  useEffect(()=> {
+    showNotification()
+  }, [notificationParams, showNotification])
 
   const handleFollow = (act) => {
 
-    let url;
+    const url = act 
+      ? `${BaseURL}/follow/${userOnline.user}/${userInfo.user}`
+      : `${BaseURL}/follow/unfollow/${userOnline.user}/${userInfo.user}`
 
-    if(act){
-      url = `${BaseURL}/follow/${userOnline.user}/${userInfo.user}`
-      notifyFollow.handleNotificationParams(`You started following ${userInfo.user}`, "success")
-    }
-    else{
-      url = `${BaseURL}/follow/unfollow/${userOnline.user}/${userInfo.user}`
-      notifyFollow.handleNotificationParams(`You stoped following ${userInfo.user}`, "warning")
-
-    }
       handleFetchValues( url, 'POST',{'Content-Type': 'application/json'})
       dispatch(updateProfileFollow(act))
   }
@@ -98,9 +95,19 @@ const ProfileBanner = ({userInfo, postsNumber, setFollowersOpen}) => {
                 : 
                   userInfo.followedByUserOnline
                   ? 
-                    <button className='text-xs lg:text-base border px-2 text-white bg-auth-primary hover:bg-primary mt-8'  onClick={() => handleFollow(false)}  > Following </button>
+                    <button 
+                      className='text-xs lg:text-base border px-2 text-white bg-auth-primary hover:bg-primary mt-8'  
+                      onClick={() => handleFollow(false)}  
+                    > 
+                      Following 
+                    </button>
                   :
-                    <button className='text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary mt-8' onClick={() => handleFollow(true)} > Follow </button>
+                    <button 
+                      className='text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary mt-8' 
+                      onClick={() => handleFollow(true)}
+                    > 
+                      Follow 
+                  </button>
               }
           </div>
       </> 

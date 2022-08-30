@@ -20,6 +20,9 @@ export const authReducer = createReducer(initialState, (builder) => {
             name: action.payload.name,
             lastName: action.payload.lastName,
             profilePic : action.payload.profilePicture,
+            presentation: action.payload.presentation,
+            followers: action.payload.followers,
+            followed: action.payload.followed,
             logged: true,
           }   
         }

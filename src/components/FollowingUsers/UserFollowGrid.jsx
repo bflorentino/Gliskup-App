@@ -1,56 +1,74 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import User from '../Posts/User'
 import {useDispatch, useSelector} from 'react-redux'
 import BaseURL from '../../services/url'
-import { followSuggestedUser, removeOneSuggestedUser } from '../../actions/followingActions'
+import { followSuggestedUser, removeOneSuggestedUser, updateProfileFollow } from '../../actions/followingActions'
 import { useFetch } from '../../hooks/useFetch'
 import { useNotification } from '../../hooks/useNotification'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 const UserFollowGrid = ({userFollowInfo}) => {
-  
+
   const dispatch = useDispatch();
-  const { handleFetchValues, resultFetch } = useFetch({})
+  const { handleFetchValues, resultFetch, resetFetchValues } = useFetch({})
   const userOnline = useSelector(state => state.authReducer)
   const location = useLocation()
-  const {user} = userFollowInfo
-
-  const notifySuccesFollow = useNotification({message:`You started following ${user}`, variant:"success"})
-  const notifyErrorFollow = useNotification({message:`An error ocurred in following ${user}`, variant:"error"})
+  const {userRequest} = useParams()
+  const {showNotification, handleNotificationParams, notificationParams} = useNotification({})
 
   useEffect(()=> {
     
     if(resultFetch === null) return
     
     if(!resultFetch.success){
-      notifyErrorFollow.showNotification()
+      handleNotificationParams(`An error ocurred in following ${userFollowInfo.user}`, "error")
       return
     }
+    resultFetch.message === "Started Following" 
+      ? handleNotificationParams(`You started following ${userFollowInfo?.user}`, "success")
+      : handleNotificationParams(`You stoped following ${userFollowInfo?.user}`, "warning")   
 
     if(location.pathname === '/gliskup/suggestedUsers')
-      dispatch(removeOneSuggestedUser(user))
+      dispatch(removeOneSuggestedUser(userFollowInfo.user))
     else{
-      dispatch(followSuggestedUser(user))
+      dispatch(followSuggestedUser(userFollowInfo.user))
     }
+    resetFetchValues()
 
-    notifySuccesFollow.showNotification()     
-
-  }, [resultFetch, dispatch, user, notifySuccesFollow, notifyErrorFollow, location.pathname])
+  }, [resultFetch, dispatch, userFollowInfo.user, handleNotificationParams, location.pathname, resetFetchValues])
   
-  const handleFollow = (e) => {
+  useEffect(()=> {
+    showNotification()
+  }, [notificationParams, showNotification])
 
-    const url =  `${BaseURL}/follow/${userOnline.user}/${user}` 
-    handleFetchValues( url, 'POST',{'Content-Type': 'application/json'}) 
+  const handleFollow = (act) => {
+
+    const url = act 
+      ? `${BaseURL}/follow/${userOnline.user}/${userFollowInfo.user}`
+      : `${BaseURL}/follow/unfollow/${userOnline.user}/${userFollowInfo.user}`
+
+      handleFetchValues( url, 'POST',{'Content-Type': 'application/json'})
+
+      if(location.pathname !== '/gliskup/suggestedUsers')
+      {
+        let isOwnProfile = userOnline.user === userRequest ? true: false 
+        dispatch(updateProfileFollow(act, isOwnProfile))
+      }
   }
 
   return (
     <div className='flex flex-row items-center justify-between bg-white h-[95px] w-full'>
-
-      <User user={userFollowInfo} sizePic={12}/>
-      <button 
-        className='mr-4 text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary' onClick={handleFollow} > 
-          {userFollowInfo.followedByUserOnline ? <p>Following</p> :  <p>Follow</p>}
-      </button>
+      <User user={userFollowInfo} sizePic={12}/>   
+      {
+        userFollowInfo.user !== userOnline.user &&(
+        <button 
+            className='mr-4 text-xs lg:text-base  border px-2 text-white bg-auth-primary hover:bg-primary' 
+            onClick= {userFollowInfo.followedByUserOnline ? () => handleFollow(false): () => handleFollow(true)  }  
+          > 
+              {userFollowInfo.followedByUserOnline ? <p>Following</p> : <p>Follow</p> }
+          </button>
+        )
+      }
     </div>
   )
 }

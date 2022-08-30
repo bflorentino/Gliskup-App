@@ -8,9 +8,9 @@ export const setSuggestedUsers = (suggestedUsers) => {
     }
 }
 
-export const updateProfileFollow = (followResult) => ({
+export const updateProfileFollow = (followResult, isOwnProfile) => ({
     type: types.updateFollowingProfileData,
-    payload: followResult
+    payload: {followResult, isOwnProfile}
 })
 
 export const removeOneSuggestedUser = (user) => ({

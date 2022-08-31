@@ -12,13 +12,13 @@ const SignUpPage = () => {
   const { loading } = useSelector(state => state.interfaceReducer)
 
   const [formValues, handleInputChanges] = useForm({
-    name: "Bryan",
-    lastName: "Florentino",
+    name: "",
+    lastName: "",
     phone: "",
-    email: "bryan@gmail.com",
-    user: "bryanxv",
-    password: '123456',
-    password2: '123456'
+    email: "",
+    user: "",
+    password: '',
+    password2: ''
   })
 
   const [ msgError, setMsgError ] = useState({

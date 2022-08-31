@@ -8,8 +8,8 @@ import { setLoading } from '../../actions/InterfaceActions'
 const LoginPage = () => {
 
   const [ formValues, handleInputChanges ] = useForm({
-    user: "bryanxv",
-    password: "123456"
+    user: "",
+    password: ""
   })
 
   const {user, password} = formValues

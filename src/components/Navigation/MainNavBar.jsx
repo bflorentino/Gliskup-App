@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { logout } from '../../actions/authActions';
 import { clearPosts } from '../../actions/postActions';
 import { removeProfileData } from '../../actions/usersActions';
@@ -47,22 +47,27 @@ const MainNavBar = () => {
               <img src='../../assets/collaboration.png' alt='' className='w-12 h-12' /></button>
             <Search />
           </div>
-            <div className='flex sd:mr-8' >
+            <div className='flex sd:mr-8 ml-2' >
 
               <ul className=' text-white font-ubuntu font-bold text-lg flex' >
                   <li className=''>
-                    <button onClick={goToHomePage}  className='cursor-pointer flex flex-row items-center justify-center rounded-lg p-2 hover:bg-[#8D71B4] w-full mr-2 sd:mr-4'>
-                      <img src="../../assets/home2.png" alt="Home" title='Home' className='w-7 h-7' /> 
+                    <button onClick={goToHomePage}  className='cursor-pointer flex flex-row items-center justify-center rounded-lg py-2 px-1 sd:p-2 hover:bg-[#8D71B4] w-full sd:mr-2'>
+                      <img src="../../assets/home2.png" alt="Home" title='Home' className='w-5 h-5 sd:w-7 sd:h-7'  /> 
                     </button>
                   </li>
                   <li >
-                    <button onClick={goToProfilePage} className='cursor-pointer flex flex-row items-center justify-center rounded-lg p-2 hover:bg-[#8D71B4] w-full mr-2 sd:mr-4 ' >
-                      <img src="../../assets/Profile2.png" alt="Profile" title='My profile' className='w-7 h-7' />
+                    <button onClick={goToProfilePage} className='cursor-pointer flex flex-row items-center justify-center rounded-lg py-2 px-1 sd:p-2 hover:bg-[#8D71B4] w-full  sd:mr-2 ' >
+                      <img src="../../assets/Profile2.png" alt="Profile" title='My profile' className='w-5 h-5 sd:w-7 sd:h-7' />
                     </button>
                   </li>
                   <li >
-                    <button className='cursor-pointer flex flex-row items-center rounded-lg p-2 hover:bg-[#8D71B4] mr-2 sd:mr-4' onClick={handleLogout}>
-                      <img src="../../assets/logout2.png" alt="Logout" title='logout' className='w-7 h-7' />  
+                    <Link to={'/gliskup/suggestedUsers'} className='cursor-pointer flex flex-row items-center justify-center rounded-lg py-2 px-1 sd:p-2 hover:bg-[#8D71B4] w-full sd:mr-2 ' >
+                      <img src="../../assets/navigation/sugerencia2.png" alt="Profile" title='Suggestions' className='w-5 h-5 sd:w-7 sd:h-7' />
+                    </Link>
+                  </li>
+                  <li >
+                    <button className='cursor-pointer flex flex-row items-center rounded-lg py-2 px-1 sd:p-2 hover:bg-[#8D71B4]  sd:mr-2' onClick={handleLogout}>
+                      <img src="../../assets/logout2.png" alt="Logout" title='logout' className='w-5 h-5 sd:w-7 sd:h-7'  />  
                     </button>
                   </li>
               </ul>

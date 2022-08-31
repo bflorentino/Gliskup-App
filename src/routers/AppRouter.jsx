@@ -33,7 +33,7 @@ const AppRouter = () => {
                     />
                     <Route
                         path="/auth/*"
-                        element={ !logged ? <AuthRouter /> : <Navigate to='/gliskup/feed' /> }
+                        element={ !logged ? <AuthRouter /> : <Navigate to='/gliskup/feed' replace={true} /> }
                     />
                     <Route
                         path="/gliskup/*"

@@ -13,7 +13,6 @@ export const followingReducer = createReducer(initialState, (builder => {
         return current(state).filter(user => user.user !== action.payload)
     })
     .addCase(types.followSuggestedUser, (state, action) => {
-        console.log(current(state))
         return current(state).map(user => {
             if(user.user !== action.payload)
                 return user
@@ -22,4 +21,3 @@ export const followingReducer = createReducer(initialState, (builder => {
         })
     })
 }))
-

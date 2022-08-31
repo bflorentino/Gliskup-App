@@ -7,7 +7,7 @@ import { useFetch } from '../../hooks/useFetch'
 import { useNotification } from '../../hooks/useNotification'
 import { useLocation, useParams } from 'react-router-dom'
 
-const UserFollowGrid = ({userFollowInfo}) => {
+const UserFollowGrid = ({userFollowInfo, applyMt}) => {
 
   const dispatch = useDispatch();
   const { handleFetchValues, resultFetch, resetFetchValues } = useFetch({})
@@ -24,15 +24,17 @@ const UserFollowGrid = ({userFollowInfo}) => {
       handleNotificationParams(`An error ocurred in following ${userFollowInfo.user}`, "error")
       return
     }
+
     resultFetch.message === "Started Following" 
-      ? handleNotificationParams(`You started following ${userFollowInfo?.user}`, "success")
-      : handleNotificationParams(`You stoped following ${userFollowInfo?.user}`, "warning")   
+    ? handleNotificationParams(`You started following ${userFollowInfo?.user}`, "success")
+    : handleNotificationParams(`You stoped following ${userFollowInfo?.user}`, "warning")   
 
     if(location.pathname === '/gliskup/suggestedUsers')
-      dispatch(removeOneSuggestedUser(userFollowInfo.user))
+    dispatch(removeOneSuggestedUser(userFollowInfo.user))
     else{
       dispatch(followSuggestedUser(userFollowInfo.user))
     }
+    console.log(resultFetch)
     resetFetchValues()
 
   }, [resultFetch, dispatch, userFollowInfo.user, handleNotificationParams, location.pathname, resetFetchValues])
@@ -57,7 +59,7 @@ const UserFollowGrid = ({userFollowInfo}) => {
   }
 
   return (
-    <div className='flex flex-row items-center justify-between bg-white h-[95px] w-full'>
+    <div className={`flex flex-row items-center justify-between bg-white h-[95px] w-full ${applyMt && 'mt-4'}`}>
       <User user={userFollowInfo} sizePic={12}/>   
       {
         userFollowInfo.user !== userOnline.user &&(

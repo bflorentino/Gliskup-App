@@ -1,8 +1,8 @@
-const BaseURL = 'http://localhost:80'
+const baseURL = process.env.REACT_APP_BASE_URL
 
 export const searchUsersService = async (searchPattern) => {
     
-    const URL = `${BaseURL}/search/${searchPattern}`;
+    const URL = `${baseURL}/search/${searchPattern}`;
 
     const req = {
         method: 'GET'

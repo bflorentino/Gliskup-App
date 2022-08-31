@@ -13,9 +13,9 @@ const Followed = ({users}) => {
 
         (users.length > 0
         ?
-          users.map((user, i) => (
-            <li key = {i} className='list-none border-b border-border-line'>
-              <UserFollowGrid  userFollowInfo={user} followed={user.followedByUserOnline} />
+          users.map(user => (
+            <li key = {user.user} className='list-none border-b border-border-line'>
+              <UserFollowGrid  userFollowInfo={user} applyMt={false} />
             </li>
           ))
         : <p className='flex justify-center items-center h-full font-ubuntu text-lg'>No followed</p>)  

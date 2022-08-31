@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { logout } from '../../actions/authActions';
 import { clearPosts } from '../../actions/postActions';
 import { removeProfileData } from '../../actions/usersActions';
@@ -62,22 +62,35 @@ const Sidebar = () => {
 
       </div>
       <ul className='mt-4 flex flex-col ml-4'>
+
         <li>
           <button onClick={goToHomePage} className='cursor-pointer flex flex-row items-center  rounded-lg p-2 w-full hover:text-blue-bar'>
             <img src="../../assets/home.png" alt="Home" title='Home' className='w-7 h-7' />
             <p className='text-gray-text ml-2 hover:text-blue-bar'>Feed</p>  
           </button>
         </li>
+
         <li>
-         <button onClick={goToProfilePage} className='cursor-pointer flex flex-row items-center  rounded-lg p-2 w-full mt-2 hover:text-blue-bar'>
+         <button onClick={goToProfilePage} className='cursor-pointer flex flex-row items-center  rounded-lg p-2 w-full mt-1 hover:text-blue-bar'>
           <img src="../../assets/profile.png" alt="profile" title='profile' className='w-7 h-7' />
           <p className='text-gray-text ml-2 hover:text-blue-bar'>Profile</p>  
          </button>
-        <button onClick={handleLogout} className='cursor-pointer flex flex-row items-center  rounded-lg p-2 w-full mt-2 '>
-          <img src="../../assets/logout.png" alt="Home" title='Sign Out' className='w-7 h-7' />
-          <p className='text-gray-text ml-2 hover:text-blue-bar'>Sign Out</p>  
-        </button>
         </li>
+
+        <li>
+         <Link to='/gliskup/suggestedUsers' className='cursor-pointer flex flex-row items-center  rounded-lg p-2 w-full mt-1 hover:text-blue-bar'>
+          <img src="../../assets/Utilities/sugerencia.png" alt="profile" title='profile' className='w-7 h-7' />
+          <p className='text-gray-text ml-2 hover:text-blue-bar'>Suggestions</p>  
+         </Link>
+        </li>
+
+        <li>
+          <button onClick={handleLogout} className='cursor-pointer flex flex-row items-center  rounded-lg p-2 w-full mt-1 '>
+            <img src="../../assets/logout.png" alt="Home" title='Sign Out' className='w-7 h-7' />
+            <p className='text-gray-text ml-2 hover:text-blue-bar'>Sign Out</p>  
+          </button>
+        </li>
+
       </ul>
     </aside>
   )

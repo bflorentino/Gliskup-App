@@ -1,8 +1,8 @@
-const BaseURL = 'http://localhost:80'
+const baseURL = process.env.REACT_APP_BASE_URL
 
 export const signUpService = async (user) => {
 
-    const URL = `${BaseURL}/auth/user`;
+    const URL = `${baseURL}/auth/user`;
 
     const res = await fetch(URL,  {
         method: "POST",
@@ -17,7 +17,7 @@ export const signUpService = async (user) => {
 
 export const loginService = async(user) => {
 
-    const URL = `${BaseURL}/auth/user/login`;
+    const URL = `${baseURL}/auth/user/login`;
 
     const req = {
         method: "POST",
@@ -34,7 +34,7 @@ export const loginService = async(user) => {
 
 export const setUploadedProfilePicService = async (picObject) => {
 
-    const URL = `${BaseURL}/auth/user/setUploadedPic`
+    const URL = `${baseURL}/auth/user/setUploadedPic`
 
     const dataToSend = new FormData();
     dataToSend.append("profilePicture", picObject.readedImage);
@@ -51,7 +51,7 @@ export const setUploadedProfilePicService = async (picObject) => {
 
 export const setAvatarProfilePicService = async (picObject) => {
    
-    const URL = `${BaseURL}/auth/user/setAvatarPic`
+    const URL = `${baseURL}/auth/user/setAvatarPic`
 
     const res = await fetch(URL, {
         method: 'PUT',

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getUserPosts } from '../../actions/postActions'
+import { useFetch } from '../../hooks/useFetch'
+import { clearPosts, setPosts } from '../../actions/postActions'
 import { setClosedStatsWindow } from '../../actions/PostStatisticsActions'
-import { getProfileInfo } from '../../actions/usersActions'
+import { removeUsersToSearch } from '../../actions/searchUserActions'
+import { removeProfileData, setProfileData } from '../../actions/usersActions'
 import FollowUsersWindow from '../FollowingUsers/FollowUsersWindow'
 import MainNavBar from '../Navigation/MainNavBar'
 import PostStatisticsWindow from '../Posts/Post-Statitics-View/PostStatisticsWindow'
 import Post from '../Posts/PostVisualization/Post'
 import Loading from '../ui/Loading'
 import ProfileBanner from './ProfileBanner'
+import baseURL from '../../services/url'
 
 const UserProfilePage = () => {
 
@@ -17,21 +20,53 @@ const UserProfilePage = () => {
   const {openW} = useSelector(state => state.postStatsWindow);
   const [ isFollowersOpen, setFollowersOpen] = useState({open: false, toShow: null})
   const dispatch = useDispatch();
-  const {userRequest} = useParams()
-  const {user} = useSelector(state => state.authReducer);
+  const {userRequestTo} = useParams()
+  const userOnline = useSelector(state => state.authReducer);
   const userData = useSelector(state => state.usersReducer);
+  const [ handlePostsFetchValues, resultPostsFetch ] = useFetch({})
+  const [ handleProfileFetchValues, resultProfileFetch ] = useFetch({})
 
+  // Effect to set fetch and cleanup funct
   useEffect(()=> {
-    
-    dispatch(getUserPosts(user, userRequest))
-    dispatch(getProfileInfo(userRequest, user))
+
+    handlePostsFetchValues(`${baseURL}/post/viewProfile/${userOnline.user}/${userRequestTo}`, 'GET')
+    handleProfileFetchValues(`${baseURL}/user/profileData/${userRequestTo}/${userOnline.user}`, 'GET')  
+  
     dispatch(setClosedStatsWindow())
     setFollowersOpen({open: false, toShow:null})
 
     document.getElementById("portal").classList.remove("show-modal")
     document.getElementById("root").classList.remove("opacity")
 
-  }, [userRequest, dispatch, user])
+    return ()=> {
+      dispatch(clearPosts())
+      dispatch(removeProfileData())
+      dispatch(removeUsersToSearch())
+    }
+
+  }, [userRequestTo, dispatch, userOnline.user, handlePostsFetchValues, handleProfileFetchValues])
+
+  // Effect when posts have been fetched
+  useEffect(() => {
+
+    if(!resultPostsFetch) return
+
+    if(resultPostsFetch.success) {
+      dispatch(setPosts(resultPostsFetch.data))
+    }
+
+  }, [resultPostsFetch, dispatch])
+
+  // Effect when profile data has been fetched
+  useEffect(() => {
+
+    if(!resultProfileFetch) return
+
+    if(resultProfileFetch.success) {
+      dispatch(setProfileData(resultProfileFetch.data))
+    }
+
+  }, [resultProfileFetch, dispatch])
 
   return (
     <>
@@ -41,16 +76,18 @@ const UserProfilePage = () => {
  
       <ProfileBanner 
         userInfo={userData && userData} 
-        postsNumber={posts} 
+        postsNumber={posts?.length} 
         setFollowersOpen={setFollowersOpen} 
       />
       {
-          !posts ? <Loading /> 
-            :(posts.length > 0 
-              ?posts.map((post, i) => 
-              <Post post={post} isOnMyOwnProfile={userRequest===user} key={i}  />
+          !posts 
+            ? <Loading /> 
+            :(
+              posts.length > 0 
+                ? posts.map((post, i) => 
+                  <Post post={post} isOnMyOwnProfile={userRequestTo===userOnline.user} key={i}  />
               )
-              : <p className='text-white mt-4 font-thin font-inter'>This user has not posted aything yet</p>
+                : <p className='text-white mt-4 font-thin font-inter'>This user has not posted aything yet</p>
             )}
         { 
           openW &&  <PostStatisticsWindow /> 

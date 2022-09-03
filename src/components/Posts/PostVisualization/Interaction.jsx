@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ProptTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeReactionToPost } from '../../../actions/postActions'
 import { interactions } from './interactions'
@@ -63,3 +64,9 @@ const Interaction = ({postId, reacted, ownReactionType}) => {
 }
 
 export default Interaction
+
+Interaction.propTypes = {
+  postId: ProptTypes.string,
+  reacted: ProptTypes.bool.isRequired,
+  ownReactionType: ProptTypes.number
+}

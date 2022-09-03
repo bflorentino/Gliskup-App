@@ -1,4 +1,5 @@
 import React from 'react'
+import ProptTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { setClosedStatsWindow, setReactionTypeStats } from '../../../actions/PostStatisticsActions'
 import ReactionsIcons from '../PostVisualization/ReactionsIcons'
@@ -28,9 +29,11 @@ const ReactionsMenu = ({reactions}) => {
             <button className='text-xl px-3 py-1' onClick={handleCloseMenu}>X</button>
         </span>
       </div>
-        <div className='flex m-auto justify-between w-[90%]'>
+        <div className='flex m-auto w-[90%]'>
           <button onClick={()=> handleReactionStats(0)}>All</button>
-          <ReactionsIcons reactionsStyles={reactionsStyles} handleReaction={handleReactionStats} />
+          <div className='flex w-[90%] ml-6'>
+            <ReactionsIcons reactionsStyles={reactionsStyles} handleReaction={handleReactionStats} />
+          </div>
       </div>
     </div>
     </>
@@ -38,3 +41,7 @@ const ReactionsMenu = ({reactions}) => {
 }
 
 export default ReactionsMenu
+
+ReactionsMenu.propTypes = {
+  reactions: ProptTypes.array.isRequired
+}

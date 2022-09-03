@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
 import { setOpenStatsWindow } from '../../../actions/PostStatisticsActions';
 
@@ -33,3 +34,7 @@ const PostStatistics = ({reactions}) => {
 }
 
 export default PostStatistics
+
+PostStatistics.propTypes = {
+  reactions: PropTypes.array.isRequired
+}

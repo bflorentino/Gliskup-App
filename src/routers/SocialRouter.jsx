@@ -11,7 +11,7 @@ const SocialRouter = () => {
     <div className='lg:flex'>
           <Routes>
               <Route
-                  exact path='/userProfile/:userRequest'
+                  exact path='/userProfile/:userRequestTo'
                   element={<UserProfilePage />}
               >
               </Route>

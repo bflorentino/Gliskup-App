@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import ProptTypes from 'prop-types'
 import { Portal } from 'react-portal'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSuggestedUsers } from '../../actions/followingActions'
@@ -10,7 +11,7 @@ import Followers from './Followers'
 
 const FollowUsersWindow = ({toShow, userTo, setFollowersOpen}) => {
  
-  const {handleFetchValues, resultFetch} = useFetch({})
+  const [handleFetchValues, resultFetch] = useFetch({})
   const dispatch = useDispatch()
   const users = useSelector(state => state.followingReducer)
   const userOnline = useSelector(state => state.authReducer)
@@ -68,3 +69,9 @@ const FollowUsersWindow = ({toShow, userTo, setFollowersOpen}) => {
 }
 
 export default FollowUsersWindow
+
+FollowUsersWindow.propTypes = {
+  toShow : ProptTypes.string.isRequired,
+  userTo: ProptTypes.string.isRequired,
+  setFollowersOpen: ProptTypes.func.isRequired
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const PostText = ({text}) => {
   return (
@@ -9,3 +10,7 @@ const PostText = ({text}) => {
 }
 
 export default PostText
+
+PostText.propTypes = {
+  text: PropTypes.string.isRequired
+}

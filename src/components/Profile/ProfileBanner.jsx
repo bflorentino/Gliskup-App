@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import ProptTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { updateProfileFollow } from '../../actions/followingActions';
 import { useFetch } from '../../hooks/useFetch';
@@ -9,7 +10,7 @@ import { useNotification } from '../../hooks/useNotification';
 const ProfileBanner = ({userInfo, postsNumber, setFollowersOpen}) => {
 
   const userOnline = useSelector(state => state.authReducer);
-  const { handleFetchValues, resultFetch, resetFetchValues } = useFetch({})
+  const [ handleFetchValues, resultFetch, resetFetchValues ] = useFetch({})
   const dispatch = useDispatch()  
   const {showNotification, handleNotificationParams, notificationParams} = useNotification({})
 
@@ -73,7 +74,7 @@ const ProfileBanner = ({userInfo, postsNumber, setFollowersOpen}) => {
                   <strong>{userInfo.followers}</strong> followers
               </p>
               
-              <p className='text-sm lg:text-base pr-4'><strong>{ postsNumber ? postsNumber.length : 0}</strong> posts</p>
+              <p className='text-sm lg:text-base pr-4'><strong>{ postsNumber ? postsNumber : 0}</strong> posts</p>
               
               <p 
                 className='text-sm lg:text-base cursor-pointer hover:underline' 
@@ -118,3 +119,9 @@ const ProfileBanner = ({userInfo, postsNumber, setFollowersOpen}) => {
 }
 
 export default ProfileBanner;
+
+ProfileBanner.propTypes = {
+  userInfo : ProptTypes.object,
+  postsNumber: ProptTypes.number,
+  setFollowersOpen: ProptTypes.func.isRequired
+}

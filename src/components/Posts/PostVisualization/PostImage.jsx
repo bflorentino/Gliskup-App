@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const PostImage = ({image}) => {
   return (
@@ -9,3 +10,5 @@ const PostImage = ({image}) => {
 }
 
 export default PostImage
+
+PostImage.propTypes = {image: PropTypes.string.isRequired}

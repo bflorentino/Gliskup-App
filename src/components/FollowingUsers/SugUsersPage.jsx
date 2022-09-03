@@ -13,7 +13,7 @@ const SugUsersPage = () => {
   const suggestedUsers = useSelector(state => state.followingReducer) 
   const [ areUsersCharged, setUsersCharged ] = useState(false);
   const dispatch = useDispatch();
-  const {handleFetchValues, resultFetch} = useFetch();
+  const [handleFetchValues, resultFetch] = useFetch();
 
   useEffect(()=> {
     handleFetchValues(`${BaseURL}/follow/suggestedUsers/${user}`, 'GET') 

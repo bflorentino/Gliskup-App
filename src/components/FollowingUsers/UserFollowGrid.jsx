@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import ProptTypes from 'prop-types'
 import User from '../Posts/User'
 import {useDispatch, useSelector} from 'react-redux'
 import BaseURL from '../../services/url'
@@ -10,7 +11,7 @@ import { useLocation, useParams } from 'react-router-dom'
 const UserFollowGrid = ({userFollowInfo, applyMt}) => {
 
   const dispatch = useDispatch();
-  const { handleFetchValues, resultFetch, resetFetchValues } = useFetch({})
+  const [ handleFetchValues, resultFetch, resetFetchValues ] = useFetch({})
   const userOnline = useSelector(state => state.authReducer)
   const location = useLocation()
   const {userRequest} = useParams()
@@ -34,7 +35,7 @@ const UserFollowGrid = ({userFollowInfo, applyMt}) => {
     else{
       dispatch(followSuggestedUser(userFollowInfo.user))
     }
-    console.log(resultFetch)
+
     resetFetchValues()
 
   }, [resultFetch, dispatch, userFollowInfo.user, handleNotificationParams, location.pathname, resetFetchValues])
@@ -76,3 +77,8 @@ const UserFollowGrid = ({userFollowInfo, applyMt}) => {
 }
 
 export default UserFollowGrid
+
+UserFollowGrid.propTypes = {
+  userFollowInfo: ProptTypes.object.isRequired,
+  applyMt: ProptTypes.bool
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import ProptTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import UserFollowGrid from './UserFollowGrid'
 
@@ -28,3 +29,7 @@ const Followed = ({users}) => {
 }
 
 export default Followed
+
+Followed.propTypes = {
+  users : ProptTypes.array.isRequired
+}

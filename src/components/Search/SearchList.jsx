@@ -1,4 +1,5 @@
 import React from 'react';
+import ProptTyes from 'prop-types'
 import User from '../Posts/User';
 
 const SearchList = ({matchedUsers}) => {
@@ -10,8 +11,8 @@ const SearchList = ({matchedUsers}) => {
         ? 
           <ul className='overflow-auto' >
           {matchedUsers.map((user) => (
-            <li className='hover:bg-gray-text'>
-              <User user={user} key={user.user} />
+            <li className='hover:bg-gray-text' key={user.user}>
+              <User user={user} />
             </li>
           ))
           }
@@ -23,3 +24,7 @@ const SearchList = ({matchedUsers}) => {
 }
 
 export default SearchList
+
+SearchList.propTypes =  {
+  matchedUsers : ProptTyes.array.isRequired
+}

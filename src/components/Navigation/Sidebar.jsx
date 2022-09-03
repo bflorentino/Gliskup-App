@@ -2,8 +2,6 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { logout } from '../../actions/authActions';
-import { clearPosts } from '../../actions/postActions';
-import { removeProfileData } from '../../actions/usersActions';
 
 const Sidebar = () => {
 
@@ -14,21 +12,16 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(logout())
-    dispatch(clearPosts())
   }
   
   const goToProfilePage = () => {
     if(location.pathname !== `/gliskup/userProfile/${userOnline.user}`){
-      dispatch(removeProfileData())
-      dispatch(clearPosts())
-      history(`/gliskup/userProfile/${userOnline.user}`, {replace:true} );
+      history(`/gliskup/userProfile/${userOnline.user}` );
     }
   }
 
   const goToHomePage = () => {
     if(location.pathname !== '/gliskup/feed'){
-      dispatch(clearPosts())
-      dispatch(removeProfileData())
       history(`/gliskup/feed`, {replace:true});
     }
   }

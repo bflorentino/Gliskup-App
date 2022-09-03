@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { reactToPost} from '../../../actions/postActions'
 import ReactionsIcons from './ReactionsIcons'
@@ -30,3 +31,9 @@ const Reactions = ({reactionsStyles, reactionsHoverStyles, postId}) => {
 }
 
 export default Reactions
+
+Reactions.propTypes = {
+  reactionsStyles: PropTypes.string.isRequired,
+  reactionsHoverStyles: PropTypes.string,
+  postId: PropTypes.string.isRequired,
+}

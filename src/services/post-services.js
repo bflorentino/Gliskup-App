@@ -20,32 +20,6 @@ export const uploadPostService = async (post) => {
     return data
 }
 
-export const getPostsServices = async (userRequest)  => {
-
-    const URL = `${baseURL}/post/view/${userRequest}`;
-
-    const req = {
-        method : 'GET'
-    }
-
-    const res = await fetch(URL, req);
-    const { data } = await res.json()
-    return data
-}
-
-export const getUserPostsServices = async (userRequestFrom, userRequestTo)  => {
-
-    const URL = `${baseURL}/post/viewProfile/${userRequestFrom}/${userRequestTo}`;
-
-    const req = {
-        method : 'GET'
-    }
-
-    const res = await fetch(URL, req);
-    const { data } = await res.json()
-    return data
-}
-
 export const removePostService = async(post) => {
 
     const URL = `${baseURL}/post/delete`;

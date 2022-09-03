@@ -1,7 +1,5 @@
 // import Swal from "sweetalert2";
-import { getPostsServices, 
-        getUserPostsServices, 
-        removePostService, 
+import {removePostService, 
         uploadPostService } from "../services/post-services";
 import { types } from "../types/types";
 import { setClosedPostEntry } from '../actions/postEntryActions'
@@ -18,24 +16,6 @@ export const uploadPost = (post) => {
             dispatch(removeLoading())
         })
     } 
-}
-
-export const getPosts = (userRequest) => {
-    return async (dispatch) => {
-        getPostsServices(userRequest).then(data => {
-            dispatch(setPosts(data))
-            dispatch(removeLoading())
-        })
-    }
-}
-
-export const getUserPosts = (userRequestFrom, userRequestTo) => {
-    return async (dispatch) => {
-        getUserPostsServices(userRequestFrom, userRequestTo).then(data => {
-            dispatch(setUserPosts(data))
-            dispatch(removeLoading())
-        })
-    }
 }
 
 export const reactToPost = (reaction) => {

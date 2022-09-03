@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Interaction from './Interaction';
 import PostImage from './PostImage';
 import PostText from './PostText';
@@ -53,9 +54,14 @@ const Post = ({post, isOnMyOwnProfile}) => {
             <PostStatistics reactions={post.reactions}  />
           </div>
          
-          <Interaction postId = {post._id} reacted = {post.reacted} ownReactionType={post.ownReactionType} />
+          <Interaction postId = {post?._id} reacted = {post.reacted} ownReactionType={post.ownReactionType} />
     </article>
   )
 }
 
 export default Post
+
+Post.propTypes = {
+  post: PropTypes.object.isRequired,
+  isOnMyOwnProfile: PropTypes.bool
+}

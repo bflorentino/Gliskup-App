@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useFetch = (state = {}) => {
     
     const [ fetchValues, setFetchValues ] = useState(state);
     const [resultFetch, setResultFetch ] = useState(null)
-    const isMounted = useRef(true);
+    
+    // let abortController = useMemo(() => new AbortController(), [])
    
     const fetchData = useCallback(async () => {
 
@@ -12,30 +13,33 @@ export const useFetch = (state = {}) => {
             method: fetchValues.method,
             headers: fetchData.headers ? fetchValues.headers : undefined,
             body: fetchValues.body ? fetchValues.body : undefined,
+            // signal: abortController.signal
         }
 
         const result =  await fetch(fetchValues.url, request)
         return await result.json()
 
-    },[fetchValues.method, fetchValues.headers, fetchValues.body, fetchValues.url] )
+    },[fetchValues] )
 
-    useEffect(() => {
-        return() => {
-            isMounted.current = false;
-        }
-    }, []);
-
+    const resetFetchValues = useCallback(() => {
+        setFetchValues({})
+        setResultFetch(null)
+    }, [])
+    
     useEffect(()=> {
-        
+
         if(fetchValues.url){
             fetchData() 
             .then(result => { 
-                if(isMounted.current){
-                    setResultFetch(result)
-                }
+                setResultFetch(result)
             })
         }
-    }, [fetchValues, fetchData])
+
+        // return () => {
+        //     abortController.abort()
+        // } 
+
+    }, [fetchValues, fetchData ])
 
     const handleFetchValues = useCallback((url, method, headers, body) => {
         setFetchValues({
@@ -46,10 +50,5 @@ export const useFetch = (state = {}) => {
         })
     }, [])
 
-    const resetFetchValues = useCallback(() => {
-        setFetchValues({})
-        setResultFetch(null)
-    }, [])
-    
-    return { handleFetchValues, resultFetch, resetFetchValues}
+    return [ handleFetchValues, resultFetch, resetFetchValues ]
 }
